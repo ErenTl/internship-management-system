@@ -23,7 +23,6 @@ namespace IMSWebAPI.Models
         public virtual DbSet<Commission> Commissions { get; set; } = null!;
         public virtual DbSet<Company> Companies { get; set; } = null!;
         public virtual DbSet<CompanyField> CompanyFields { get; set; } = null!;
-        public virtual DbSet<Deneme> Denemes { get; set; } = null!;
         public virtual DbSet<Department> Departments { get; set; } = null!;
         public virtual DbSet<District> Districts { get; set; } = null!;
         public virtual DbSet<Faculty> Faculties { get; set; } = null!;
@@ -193,17 +192,6 @@ namespace IMSWebAPI.Models
                     .HasForeignKey(d => d.FieldId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("companyField_fieldId_fkey");
-            });
-
-            modelBuilder.Entity<Deneme>(entity =>
-            {
-                entity.HasNoKey();
-
-                entity.ToTable("deneme");
-
-                entity.Property(e => e.SaKal)
-                    .HasMaxLength(150)
-                    .HasColumnName("saKal");
             });
 
             modelBuilder.Entity<Department>(entity =>
