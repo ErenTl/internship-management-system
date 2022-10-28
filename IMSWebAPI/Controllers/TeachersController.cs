@@ -13,9 +13,9 @@ namespace IMSWebAPI.Controllers
     [ApiController]
     public class TeachersController : ControllerBase
     {
-        private readonly stajtakipdeneme1Context _context;
+        private readonly imsdbContext _context;
 
-        public TeachersController(stajtakipdeneme1Context context)
+        public TeachersController(imsdbContext context)
         {
             _context = context;
         }
@@ -46,7 +46,7 @@ namespace IMSWebAPI.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> PutTeacher(long id, Teacher teacher)
         {
-            if (id != teacher.Id)
+            if (id != teacher.UserId)
             {
                 return BadRequest();
             }
@@ -78,9 +78,23 @@ namespace IMSWebAPI.Controllers
         public async Task<ActionResult<Teacher>> PostTeacher(Teacher teacher)
         {
             _context.Teachers.Add(teacher);
-            await _context.SaveChangesAsync();
+            try
+            {
+                await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateException)
+            {
+                if (TeacherExists(teacher.UserId))
+                {
+                    return Conflict();
+                }
+                else
+                {
+                    throw;
+                }
+            }
 
-            return CreatedAtAction("GetTeacher", new { id = teacher.Id }, teacher);
+            return CreatedAtAction("GetTeacher", new { id = teacher.UserId }, teacher);
         }
 
         // DELETE: api/Teachers/5
@@ -101,7 +115,7 @@ namespace IMSWebAPI.Controllers
 
         private bool TeacherExists(long id)
         {
-            return _context.Teachers.Any(e => e.Id == id);
+            return _context.Teachers.Any(e => e.UserId == id);
         }
     }
 }

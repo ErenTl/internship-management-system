@@ -13,9 +13,9 @@ namespace IMSWebAPI.Controllers
     [ApiController]
     public class FieldOfActivitiesController : ControllerBase
     {
-        private readonly stajtakipdeneme1Context _context;
+        private readonly imsdbContext _context;
 
-        public FieldOfActivitiesController(stajtakipdeneme1Context context)
+        public FieldOfActivitiesController(imsdbContext context)
         {
             _context = context;
         }

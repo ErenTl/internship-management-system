@@ -13,9 +13,9 @@ namespace IMSWebAPI.Controllers
     [ApiController]
     public class CompaniesController : ControllerBase
     {
-        private readonly stajtakipdeneme1Context _context;
+        private readonly imsdbContext _context;
 
-        public CompaniesController(stajtakipdeneme1Context context)
+        public CompaniesController(imsdbContext context)
         {
             _context = context;
         }

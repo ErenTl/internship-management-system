@@ -13,9 +13,9 @@ namespace IMSWebAPI.Controllers
     [ApiController]
     public class InternshipControlInfoesController : ControllerBase
     {
-        private readonly stajtakipdeneme1Context _context;
+        private readonly imsdbContext _context;
 
-        public InternshipControlInfoesController(stajtakipdeneme1Context context)
+        public InternshipControlInfoesController(imsdbContext context)
         {
             _context = context;
         }

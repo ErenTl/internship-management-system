@@ -13,9 +13,9 @@ namespace IMSWebAPI.Controllers
     [ApiController]
     public class FacultiesController : ControllerBase
     {
-        private readonly stajtakipdeneme1Context _context;
+        private readonly imsdbContext _context;
 
-        public FacultiesController(stajtakipdeneme1Context context)
+        public FacultiesController(imsdbContext context)
         {
             _context = context;
         }

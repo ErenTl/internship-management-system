@@ -13,9 +13,9 @@ namespace IMSWebAPI.Controllers
     [ApiController]
     public class ManagerTypesController : ControllerBase
     {
-        private readonly stajtakipdeneme1Context _context;
+        private readonly imsdbContext _context;
 
-        public ManagerTypesController(stajtakipdeneme1Context context)
+        public ManagerTypesController(imsdbContext context)
         {
             _context = context;
         }

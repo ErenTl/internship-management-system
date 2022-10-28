@@ -13,9 +13,9 @@ namespace IMSWebAPI.Controllers
     [ApiController]
     public class AdminsController : ControllerBase
     {
-        private readonly stajtakipdeneme1Context _context;
+        private readonly imsdbContext _context;
 
-        public AdminsController(stajtakipdeneme1Context context)
+        public AdminsController(imsdbContext context)
         {
             _context = context;
         }

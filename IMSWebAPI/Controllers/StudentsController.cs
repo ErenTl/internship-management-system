@@ -13,9 +13,9 @@ namespace IMSWebAPI.Controllers
     [ApiController]
     public class StudentsController : ControllerBase
     {
-        private readonly stajtakipdeneme1Context _context;
+        private readonly imsdbContext _context;
 
-        public StudentsController(stajtakipdeneme1Context context)
+        public StudentsController(imsdbContext context)
         {
             _context = context;
         }
@@ -32,12 +32,14 @@ namespace IMSWebAPI.Controllers
         public async Task<ActionResult<Student>> GetStudent(long id)
         {
             var student = await _context.Students.FindAsync(id);
-            var user = await _context.Students.FindAsync(id);
 
             if (student == null)
             {
                 return NotFound();
             }
+
+            var user = await _context.Users.FindAsync(id);
+            student.User = user;
 
             return student;
         }
@@ -47,7 +49,7 @@ namespace IMSWebAPI.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> PutStudent(long id, Student student)
         {
-            if (id != student.Id)
+            if (id != student.UserId)
             {
                 return BadRequest();
             }
@@ -78,12 +80,24 @@ namespace IMSWebAPI.Controllers
         [HttpPost]
         public async Task<ActionResult<Student>> PostStudent(Student student)
         {
-            var department = await _context.Departments.FindAsync(student.User.DepartmentId);
-            student.User.Department = department;
             _context.Students.Add(student);
-            await _context.SaveChangesAsync();
+            try
+            {
+                await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateException)
+            {
+                if (StudentExists(student.UserId))
+                {
+                    return Conflict();
+                }
+                else
+                {
+                    throw;
+                }
+            }
 
-            return CreatedAtAction("GetStudent", new { id = student.Id }, student);
+            return CreatedAtAction("GetStudent", new { id = student.UserId }, student);
         }
 
         // DELETE: api/Students/5
@@ -104,7 +118,7 @@ namespace IMSWebAPI.Controllers
 
         private bool StudentExists(long id)
         {
-            return _context.Students.Any(e => e.Id == id);
+            return _context.Students.Any(e => e.UserId == id);
         }
     }
 }
