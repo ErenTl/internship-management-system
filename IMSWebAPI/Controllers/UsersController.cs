@@ -47,9 +47,13 @@ namespace IMSWebAPI.Controllers
                     afterLoginInfo.role = "student";
                     return afterLoginInfo;
                 }
+                else
+                {
+                    return BadRequest();
+                }
             }
 
-            if(unap.Password.Length == 4)
+            else if(unap.Password.Length == 4)
             {
                 var teacher = await _context.Teachers.Where(u => u.RegistrationNumber == unap.UserName).FirstOrDefaultAsync();
                 var userId = teacher.UserId;
@@ -88,6 +92,10 @@ namespace IMSWebAPI.Controllers
                 {
                     return BadRequest();
                 }
+            }
+            else
+            {
+                return BadRequest();
             }
 
             return afterLoginInfo;
