@@ -14,7 +14,7 @@ namespace IMSWebAPI.Models
         public long UserId { get; set; }
         public string RegistrationNumber { get; set; } = null!;
 
-        public virtual User User { get; set; } = null!;
+        public virtual User? User { get; set; } = null!;
         public virtual ICollection<Commission> Commissions { get; set; }
         public virtual ICollection<InternshipExam> InternshipExams { get; set; }
     }

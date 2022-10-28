@@ -491,7 +491,7 @@ namespace IMSWebAPI.Models
                     .HasColumnName("userId");
 
                 entity.Property(e => e.RegistrationNumber)
-                    .HasMaxLength(9)
+                    .HasMaxLength(4)
                     .HasColumnName("registrationNumber");
 
                 entity.HasOne(d => d.User)

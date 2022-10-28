@@ -19,7 +19,7 @@ namespace IMSWebAPI.Models
         public string Telephone { get; set; } = null!;
         public string Tc { get; set; } = null!;
 
-        public virtual Department Department { get; set; } = null!;
+        public virtual Department? Department { get; set; } = null!;
         public virtual Student? Student { get; set; }
         public virtual Teacher? Teacher { get; set; }
         public virtual ICollection<Admin> Admins { get; set; }

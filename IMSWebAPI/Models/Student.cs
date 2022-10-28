@@ -13,7 +13,7 @@ namespace IMSWebAPI.Models
         public long UserId { get; set; }
         public string StudentNumber { get; set; } = null!;
 
-        public virtual User User { get; set; } = null!;
+        public virtual User? User { get; set; } = null!;
         public virtual ICollection<StudentInternship> StudentInternships { get; set; }
     }
 }

@@ -7,6 +7,9 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using IMSWebAPI.Models;
 
+
+using IMSWebAPI.Tools;
+
 namespace IMSWebAPI.Controllers
 {
     [Route("api/[controller]")]
@@ -18,6 +21,41 @@ namespace IMSWebAPI.Controllers
         public UsersController(imsdbContext context)
         {
             _context = context;
+        }
+
+        // POST: api/Users/Login
+        [HttpPost("login")]
+        public async Task<ActionResult<Boolean>> Login(UserNameAndPassword unap)
+        {
+            if(unap.UserName.Length == 9)
+            {
+                var student = await _context.Students.Where(u => u.StudentNumber == unap.UserName).FirstOrDefaultAsync();
+                var userId = student.UserId;
+
+                var user = await _context.Users.FindAsync(userId);
+                var pswHash = user.Password;
+                
+                if(pswHash == Hashing.MD5Hash(unap.Password))
+                {
+                    return true;
+                }
+            }
+
+            if(unap.Password.Length == 4)
+            {
+                var teacher = await _context.Teachers.Where(u => u.RegistrationNumber == unap.UserName).FirstOrDefaultAsync();
+                var userId = teacher.UserId;
+
+                var user = await _context.Users.FindAsync(userId);
+                var pswHash = user.Password;
+
+                if (pswHash == Hashing.MD5Hash(unap.Password))
+                {
+                    return true;
+                }
+            }
+
+            return false;
         }
 
         // GET: api/Users
@@ -72,16 +110,20 @@ namespace IMSWebAPI.Controllers
             return NoContent();
         }
 
-        // POST: api/Users
+        // POST: api/Users/studentSignUp
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPost]
-        public async Task<ActionResult<User>> PostUser(User user)
+        [HttpPost("studentSignUp")]
+        public async Task<ActionResult<User>> PostStudent(User user)
         {
+            user.Student.UserId = user.Id;
+            user.Password = Hashing.MD5Hash(user.Password);
             _context.Users.Add(user);
             await _context.SaveChangesAsync();
 
             return CreatedAtAction("GetUser", new { id = user.Id }, user);
         }
+
+        
 
         // DELETE: api/Users/5
         [HttpDelete("{id}")]

@@ -80,6 +80,8 @@ namespace IMSWebAPI.Controllers
         [HttpPost]
         public async Task<ActionResult<Student>> PostStudent(Student student)
         {
+            var user = await _context.Users.FindAsync(student.UserId);
+            student.User = user;
             _context.Students.Add(student);
             try
             {
