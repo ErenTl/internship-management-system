@@ -26,7 +26,7 @@ CREATE TABLE "user" (
 
 CREATE TABLE "teacher" (
   "userId" bigint PRIMARY KEY UNIQUE NOT NULL REFERENCES "user" ("id"),
-  "registrationNumber" varchar(9) UNIQUE NOT NULL
+  "registrationNumber" varchar(4) UNIQUE NOT NULL
 );
 
 CREATE TABLE "student" (
