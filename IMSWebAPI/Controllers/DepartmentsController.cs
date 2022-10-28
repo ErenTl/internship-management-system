@@ -28,6 +28,7 @@ namespace IMSWebAPI.Controllers
         }
 
         // GET: api/Departments/5
+        // department and faculty name
         [HttpGet("{id}")]
         public async Task<ActionResult<Department>> GetDepartment(short id)
         {
@@ -37,6 +38,10 @@ namespace IMSWebAPI.Controllers
             {
                 return NotFound();
             }
+
+            var faculty = await _context.Faculties.FindAsync(department.FacultyId);
+            department.Faculty = faculty;
+
 
             return department;
         }
