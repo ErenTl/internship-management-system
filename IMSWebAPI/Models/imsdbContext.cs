@@ -5,13 +5,13 @@ using Microsoft.EntityFrameworkCore.Metadata;
 
 namespace IMSWebAPI.Models
 {
-    public partial class stajtakipdeneme1Context : DbContext
+    public partial class imsdbContext : DbContext
     {
-        public stajtakipdeneme1Context()
+        public imsdbContext()
         {
         }
 
-        public stajtakipdeneme1Context(DbContextOptions<stajtakipdeneme1Context> options)
+        public imsdbContext(DbContextOptions<imsdbContext> options)
             : base(options)
         {
         }
@@ -19,10 +19,12 @@ namespace IMSWebAPI.Models
         public virtual DbSet<AcceptedWorkDayFromUserId> AcceptedWorkDayFromUserIds { get; set; } = null!;
         public virtual DbSet<Address> Addresses { get; set; } = null!;
         public virtual DbSet<Admin> Admins { get; set; } = null!;
+        public virtual DbSet<Announcement> Announcements { get; set; } = null!;
         public virtual DbSet<City> Cities { get; set; } = null!;
         public virtual DbSet<Commission> Commissions { get; set; } = null!;
         public virtual DbSet<Company> Companies { get; set; } = null!;
         public virtual DbSet<CompanyField> CompanyFields { get; set; } = null!;
+        public virtual DbSet<Deneme> Denemes { get; set; } = null!;
         public virtual DbSet<Department> Departments { get; set; } = null!;
         public virtual DbSet<District> Districts { get; set; } = null!;
         public virtual DbSet<Faculty> Faculties { get; set; } = null!;
@@ -44,7 +46,7 @@ namespace IMSWebAPI.Models
             if (!optionsBuilder.IsConfigured)
             {
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-                optionsBuilder.UseNpgsql("Host=localhost;Database=stajtakipdeneme1;Username=postgres;Password=dbpass");
+                optionsBuilder.UseNpgsql("Host=localhost;Database=imsdb;Username=postgres;Password=dbpass");
             }
         }
 
@@ -97,6 +99,23 @@ namespace IMSWebAPI.Models
                     .HasForeignKey(d => d.UserId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("admin_userId_fkey");
+            });
+
+            modelBuilder.Entity<Announcement>(entity =>
+            {
+                entity.ToTable("announcement");
+
+                entity.Property(e => e.Id).HasColumnName("id");
+
+                entity.Property(e => e.Content)
+                    .HasMaxLength(1000)
+                    .HasColumnName("content");
+
+                entity.Property(e => e.Date).HasColumnName("date");
+
+                entity.Property(e => e.Title)
+                    .HasMaxLength(100)
+                    .HasColumnName("title");
             });
 
             modelBuilder.Entity<City>(entity =>
@@ -192,6 +211,17 @@ namespace IMSWebAPI.Models
                     .HasForeignKey(d => d.FieldId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("companyField_fieldId_fkey");
+            });
+
+            modelBuilder.Entity<Deneme>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("deneme");
+
+                entity.Property(e => e.SaKal)
+                    .HasMaxLength(150)
+                    .HasColumnName("saKal");
             });
 
             modelBuilder.Entity<Department>(entity =>
@@ -430,21 +460,21 @@ namespace IMSWebAPI.Models
 
             modelBuilder.Entity<Student>(entity =>
             {
+                entity.HasKey(e => e.UserId)
+                    .HasName("student_pkey");
+
                 entity.ToTable("student");
 
                 entity.HasIndex(e => e.StudentNumber, "student_studentNumber_key")
                     .IsUnique();
 
-                entity.HasIndex(e => e.UserId, "student_userId_key")
-                    .IsUnique();
-
-                entity.Property(e => e.Id).HasColumnName("id");
+                entity.Property(e => e.UserId)
+                    .ValueGeneratedNever()
+                    .HasColumnName("userId");
 
                 entity.Property(e => e.StudentNumber)
                     .HasMaxLength(9)
                     .HasColumnName("studentNumber");
-
-                entity.Property(e => e.UserId).HasColumnName("userId");
 
                 entity.HasOne(d => d.User)
                     .WithOne(p => p.Student)
@@ -478,21 +508,21 @@ namespace IMSWebAPI.Models
 
             modelBuilder.Entity<Teacher>(entity =>
             {
+                entity.HasKey(e => e.UserId)
+                    .HasName("teacher_pkey");
+
                 entity.ToTable("teacher");
 
                 entity.HasIndex(e => e.RegistrationNumber, "teacher_registrationNumber_key")
                     .IsUnique();
 
-                entity.HasIndex(e => e.UserId, "teacher_userId_key")
-                    .IsUnique();
-
-                entity.Property(e => e.Id).HasColumnName("id");
+                entity.Property(e => e.UserId)
+                    .ValueGeneratedNever()
+                    .HasColumnName("userId");
 
                 entity.Property(e => e.RegistrationNumber)
                     .HasMaxLength(9)
                     .HasColumnName("registrationNumber");
-
-                entity.Property(e => e.UserId).HasColumnName("userId");
 
                 entity.HasOne(d => d.User)
                     .WithOne(p => p.Teacher)
