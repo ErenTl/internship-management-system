@@ -78,6 +78,8 @@ namespace IMSWebAPI.Controllers
         [HttpPost]
         public async Task<ActionResult<Student>> PostStudent(Student student)
         {
+            var department = await _context.Departments.FindAsync(student.User.DepartmentId);
+            student.User.Department = department;
             _context.Students.Add(student);
             await _context.SaveChangesAsync();
 
