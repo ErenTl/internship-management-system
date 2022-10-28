@@ -25,8 +25,9 @@ namespace IMSWebAPI.Controllers
 
         // POST: api/Users/Login
         [HttpPost("login")]
-        public async Task<ActionResult<Boolean>> Login(UserNameAndPassword unap)
+        public async Task<ActionResult<AfterLoginInfo>> Login(UserNameAndPassword unap)
         {
+            AfterLoginInfo afterLoginInfo = new AfterLoginInfo();
             if(unap.UserName.Length == 9)
             {
                 var student = await _context.Students.Where(u => u.StudentNumber == unap.UserName).FirstOrDefaultAsync();
@@ -34,10 +35,17 @@ namespace IMSWebAPI.Controllers
 
                 var user = await _context.Users.FindAsync(userId);
                 var pswHash = user.Password;
+
+                
+
                 
                 if(pswHash == Hashing.MD5Hash(unap.Password))
                 {
-                    return true;
+                    afterLoginInfo.user = user;
+                    afterLoginInfo.user.Password = null;
+                    afterLoginInfo.id = student.StudentNumber;
+                    afterLoginInfo.role = "student";
+                    return afterLoginInfo;
                 }
             }
 
@@ -49,13 +57,40 @@ namespace IMSWebAPI.Controllers
                 var user = await _context.Users.FindAsync(userId);
                 var pswHash = user.Password;
 
+
+                
+
                 if (pswHash == Hashing.MD5Hash(unap.Password))
                 {
-                    return true;
+                    afterLoginInfo.user = user;
+                    afterLoginInfo.user.Password = null;
+                    afterLoginInfo.id = teacher.RegistrationNumber;
+
+                    var com = await _context.Commissions.FindAsync(user.Id);
+                    if(com.TeacherId == user.Id) { 
+                        afterLoginInfo.role = "commission"; 
+                    
+                    } else {
+                        var adm = await _context.Admins.FindAsync(user.Id);
+                        if (adm.Id == user.Id)
+                        {
+                            if (adm.SuperAdmin)
+                            {
+                                afterLoginInfo.role = "superadmin";
+                            }
+                            else
+                            {
+                                afterLoginInfo.role = "admin";
+                            }
+                        }
+                    }
+                }else
+                {
+                    return BadRequest();
                 }
             }
 
-            return false;
+            return afterLoginInfo;
         }
 
         // GET: api/Users
