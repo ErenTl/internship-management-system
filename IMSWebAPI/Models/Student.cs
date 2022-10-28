@@ -10,7 +10,6 @@ namespace IMSWebAPI.Models
             StudentInternships = new HashSet<StudentInternship>();
         }
 
-        public long Id { get; set; }
         public long UserId { get; set; }
         public string StudentNumber { get; set; } = null!;
 

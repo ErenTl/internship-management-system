@@ -14,7 +14,7 @@ namespace IMSWebAPI.Models
         public short FacultyId { get; set; }
         public string Name { get; set; } = null!;
 
-        public virtual Faculty? Faculty { get; set; } = null!;
+        public virtual Faculty Faculty { get; set; } = null!;
         public virtual ICollection<User> Users { get; set; }
     }
 }

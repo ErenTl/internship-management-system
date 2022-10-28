@@ -11,7 +11,6 @@ namespace IMSWebAPI.Models
             InternshipExams = new HashSet<InternshipExam>();
         }
 
-        public long Id { get; set; }
         public long UserId { get; set; }
         public string RegistrationNumber { get; set; } = null!;
 
