@@ -1,4 +1,4 @@
-using IMSWebAPI.Models;
+﻿using IMSWebAPI.Models;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -26,7 +26,7 @@ builder.Services.AddMvc(option => option.EnableEndpointRouting = false)
                 .SetCompatibilityVersion(Microsoft.AspNetCore.Mvc.CompatibilityVersion.Version_3_0)
                 .AddNewtonsoftJson(opt => opt.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
 
-builder.Services.AddDbContext<stajtakipdeneme1Context>(options => options.UseNpgsql("Host=localhost;Database=stajtakipdeneme1;Username=postgres;Password=dbpass"));
+builder.Services.AddDbContext<imsdbContext>(options => options.UseNpgsql("Host=localhost;Database=imsdb;Username=postgres;Password=dbpass"));
 
 
 //builder.Services.AddDbContext<IMSWebAPI.Models.stajtakipdeneme1Context>(opt => opt.UseInMemoryDatabase("item"));
