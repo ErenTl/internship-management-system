@@ -18,6 +18,7 @@ namespace IMSWebAPI.Models
         public string Email { get; set; } = null!;
         public string Telephone { get; set; } = null!;
         public string Tc { get; set; } = null!;
+        public DateOnly? LastLogin { get; set; }
 
         public virtual Department? Department { get; set; } = null!;
         public virtual Student? Student { get; set; }

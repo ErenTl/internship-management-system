@@ -21,7 +21,8 @@ CREATE TABLE "user" (
   "password" varchar(32) NOT NULL,
   "email" varchar(50) UNIQUE NOT NULL,
   "telephone" varchar(12) UNIQUE NOT NULL,
-  "TC" varchar(11) UNIQUE NOT NULL
+  "TC" varchar(11) UNIQUE NOT NULL,
+  "lastLogin" date
 );
 
 CREATE TABLE "teacher" (

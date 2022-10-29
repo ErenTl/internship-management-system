@@ -19,6 +19,7 @@ namespace IMSWebAPI.Models
         public virtual DbSet<AcceptedWorkDayFromUserId> AcceptedWorkDayFromUserIds { get; set; } = null!;
         public virtual DbSet<Address> Addresses { get; set; } = null!;
         public virtual DbSet<Admin> Admins { get; set; } = null!;
+        public virtual DbSet<Announcement> Announcements { get; set; } = null!;
         public virtual DbSet<City> Cities { get; set; } = null!;
         public virtual DbSet<Commission> Commissions { get; set; } = null!;
         public virtual DbSet<Company> Companies { get; set; } = null!;
@@ -97,6 +98,23 @@ namespace IMSWebAPI.Models
                     .HasForeignKey(d => d.UserId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("admin_userId_fkey");
+            });
+
+            modelBuilder.Entity<Announcement>(entity =>
+            {
+                entity.ToTable("announcement");
+
+                entity.Property(e => e.Id).HasColumnName("id");
+
+                entity.Property(e => e.Content)
+                    .HasMaxLength(1000)
+                    .HasColumnName("content");
+
+                entity.Property(e => e.Date).HasColumnName("date");
+
+                entity.Property(e => e.Title)
+                    .HasMaxLength(100)
+                    .HasColumnName("title");
             });
 
             modelBuilder.Entity<City>(entity =>
@@ -525,6 +543,8 @@ namespace IMSWebAPI.Models
                 entity.Property(e => e.FirstName)
                     .HasMaxLength(50)
                     .HasColumnName("firstName");
+
+                entity.Property(e => e.LastLogin).HasColumnName("lastLogin");
 
                 entity.Property(e => e.LastName)
                     .HasMaxLength(50)
