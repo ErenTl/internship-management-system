@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using IMSWebAPI.Models;
+using IMSWebAPI.Models.APIModels;
 
 
 using IMSWebAPI.Tools;
@@ -120,6 +121,24 @@ namespace IMSWebAPI.Controllers
             }
 
             return user;
+        }
+
+        // PUT: api/Users/changePassword
+        [HttpPut("changepassword")]
+        public async Task<ActionResult<Boolean>> ChangePassword(UserIdAndNewOldPassword nop)
+        {
+            var user = await _context.Users.FindAsync(nop.userId);
+            if(user == null) { return BadRequest(); }
+
+            if(user.Password == Hashing.MD5Hash(nop.oldPassword))
+            {
+                user.Password = Hashing.MD5Hash(nop.newPassword);
+                await _context.SaveChangesAsync();
+                return true;
+            }
+
+            return BadRequest(); ;
+
         }
 
         // PUT: api/Users/5
