@@ -1,0 +1,36 @@
+{
+    "id": 0,
+    "addressId": 0,
+    "startingDate": "2022-10-30",
+    "endingDate": "2022-10-30",
+    "workDay": 0,
+    "internshipType": 1,
+    "sgk": true,
+    "_25age": true,
+    "gss": true,
+    "stateContribution": true,
+    "autumnPeriod": true,
+    "manager": 1,
+    "address": {
+      "districtId": 3,
+      "addressInfo": "string",
+      "companies": [
+        {
+          "formalName": "sddd",
+          "telephone": "0d55",
+          "fax": "dd",
+          "email": "da",
+          "companyFields": [
+            {
+              "fieldId": 3
+            }
+          ]
+        }
+      ]
+    },
+    "studentInternships": [
+        {
+          "studentId": 1
+        }
+    ]
+  }

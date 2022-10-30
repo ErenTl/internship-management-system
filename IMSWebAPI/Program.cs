@@ -28,6 +28,7 @@ builder.Services.AddMvc(option => option.EnableEndpointRouting = false)
 
 builder.Services.AddDbContext<imsdbContext>(options => options.UseNpgsql("Host=localhost;Database=imsdb;Username=postgres;Password=dbpass"));
 
+AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
 
 //builder.Services.AddDbContext<IMSWebAPI.Models.stajtakipdeneme1Context>(opt => opt.UseInMemoryDatabase("item"));
 
