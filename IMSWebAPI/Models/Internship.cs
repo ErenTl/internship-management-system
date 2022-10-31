@@ -16,8 +16,8 @@ namespace IMSWebAPI.Models
 
         public long Id { get; set; }
         public long AddressId { get; set; }
-        public DateOnly StartingDate { get; set; }
-        public DateOnly? EndingDate { get; set; }
+        public DateTime StartingDate { get; set; }
+        public DateTime? EndingDate { get; set; }
         public int WorkDay { get; set; }
         public short InternshipType { get; set; }
         public bool Sgk { get; set; }
@@ -27,13 +27,13 @@ namespace IMSWebAPI.Models
         public bool AutumnPeriod { get; set; }
         public short Manager { get; set; }
 
-        public virtual Address Address { get; set; } = null!;
-        public virtual InternshipType InternshipTypeNavigation { get; set; } = null!;
-        public virtual ManagerType ManagerNavigation { get; set; } = null!;
+        public virtual Address? Address { get; set; } = null!;
+        public virtual InternshipType? InternshipTypeNavigation { get; set; } = null!;
+        public virtual ManagerType? ManagerNavigation { get; set; } = null!;
         public virtual ICollection<Ime> Imes { get; set; }
         public virtual ICollection<InternshipControlInfo> InternshipControlInfos { get; set; }
         public virtual ICollection<InternshipDocControl> InternshipDocControls { get; set; }
         public virtual ICollection<InternshipExam> InternshipExams { get; set; }
-        public virtual ICollection<StudentInternship> StudentInternships { get; set; }
+        public virtual ICollection<StudentInternship>? StudentInternships { get; set; }
     }
 }

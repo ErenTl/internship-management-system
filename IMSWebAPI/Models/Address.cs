@@ -15,7 +15,7 @@ namespace IMSWebAPI.Models
         public int DistrictId { get; set; }
         public string AddressInfo { get; set; } = null!;
 
-        public virtual District District { get; set; } = null!;
+        public virtual District? District { get; set; } = null!;
         public virtual ICollection<Company> Companies { get; set; }
         public virtual ICollection<Internship> Internships { get; set; }
     }

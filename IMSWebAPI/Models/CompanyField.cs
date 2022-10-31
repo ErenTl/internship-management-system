@@ -9,7 +9,7 @@ namespace IMSWebAPI.Models
         public long CompanyId { get; set; }
         public int FieldId { get; set; }
 
-        public virtual Company Company { get; set; } = null!;
-        public virtual FieldOfActivity Field { get; set; } = null!;
+        public virtual Company? Company { get; set; } = null!;
+        public virtual FieldOfActivity? Field { get; set; } = null!;
     }
 }

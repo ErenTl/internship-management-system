@@ -9,7 +9,7 @@ namespace IMSWebAPI.Models
         public long StudentId { get; set; }
         public long InternId { get; set; }
 
-        public virtual Internship Intern { get; set; } = null!;
-        public virtual Student Student { get; set; } = null!;
+        public virtual Internship? Intern { get; set; } = null!;
+        public virtual Student? Student { get; set; } = null!;
     }
 }
