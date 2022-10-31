@@ -1,0 +1,26 @@
+{
+  "departmentId": 0,
+  "firstName": "string",
+  "lastName": "string",
+  "password": "string",
+  "email": "string",
+  "telephone": "string",
+  "tc": "string",
+  "student": {
+    "studentNumber": "string"
+  }
+}
+
+Example:
+{
+    "departmentId": 6,
+    "firstName": "Berra",
+    "lastName": "Oğuz",
+    "password": "benberra",
+    "email": "berra@gmail.com",
+    "telephone": "905345456565",
+    "tc": "11111111143",
+    "student": {
+      "studentNumber": "201307028",
+    }
+  }

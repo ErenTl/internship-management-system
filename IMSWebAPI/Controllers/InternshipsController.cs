@@ -92,7 +92,7 @@ namespace IMSWebAPI.Controllers
             intern.address = internship.Address.AddressInfo;
             intern.city = internship.Address.District.City.Name;
             intern.district = internship.Address.District.Name;
-            intern.postalCode = "34000";
+            intern.postalCode = internship.Address.District.Id.ToString();
             intern.intern_1 = internship.InternshipType==1 ? true : false;
             intern.intern_2 = internship.InternshipType==2 ? true : false;
             intern.startingDate = internship.StartingDate.ToString();
@@ -108,7 +108,7 @@ namespace IMSWebAPI.Controllers
             intern.companyAddress = company.Address.AddressInfo;
             intern.companycity = company.Address.District.City.Name;
             intern.companyDistrict = company.Address.District.Name;
-            intern.companyPostalCode = "34313";
+            intern.companyPostalCode = company.Address.District.Id.ToString();
             intern.companyTelephone = company.Telephone;
             intern.companyFax = company.Fax;
             intern.companyEmail = company.Email;
