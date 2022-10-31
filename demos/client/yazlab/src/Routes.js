@@ -2,7 +2,7 @@ import React from "react";
 import {Routes, Route} from "react-router-dom";
 
 import Navbar from "./components/navbar";
-// import Login from "./components/loginpage/login"
+import Login from "./components/loginpage/login"
 
 import Home from "./components/home";
 import Imebasvuru from "./components/pages/imebasvuru";
@@ -18,7 +18,7 @@ import Stajtakip from "./components/pages/stajtakip";
 const Routess = () => {
     return (
         <Routes>
-            {/* <Route exact path= "/login" element={<Login/>}/> */}
+            <Route exact path= "/login" element={<Login/>}/>
             <Route exact path= "/home" element={<Navbar><Home/></Navbar>}/>
             
             <Route exact path= "/imebasvuru" element={<Navbar><Imebasvuru/></Navbar>}/>
