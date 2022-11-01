@@ -15,7 +15,14 @@ Return:
       "email": "beneyim@gmail.com",
       "telephone": "905385505368",
       "tc": "11111111110",
-      "lastLogin": null,
+      "lastLogin": {
+        "year": 2022,
+        "month": 11,
+        "day": 1,
+        "dayOfWeek": 2,
+        "dayOfYear": 305,
+        "dayNumber": 738459
+      },
       "department": null,
       "student": {
         "userId": 1,
@@ -27,5 +34,17 @@ Return:
     },
     "id": "201307008",
     "role": "student",
-    "accessToken": null
-}
+    "accessToken": null,
+    "previousLogin": {
+      "year": 2022,
+      "month": 11,
+      "day": 1,
+      "dayOfWeek": 2,
+      "dayOfYear": 305,
+      "dayNumber": 738459
+    }
+  }
+
+//Last login null ise kullanıcı ilk defa giriş yapmış demektir.
+//İlk girişte pasaport değiştirme zorunludur. Login API'sinde lastLogin null ise lastLogin güncellenmez.
+//lastLogin null iken Pasaport değiştirildikten sonra lastlogin güncellenir.
