@@ -184,43 +184,37 @@
                                     <div class="table-responsive">
                                         <table class="table table-hover">
                                             <thead>
-                                                <tr>
-                                                    <th scope="col">ID</th>
-                                                    <th scope="col">Adı Soyadı</th>
-                                                    <th scope="col">İME Başvuru Formu</th>
-                                                    <th scope="col">İME Defteri</th>
-                                                    <th scope="col">İME Değerlendirme Formu</th>
-                                                    <th scope="col">Belge Değerlendirme</th>
-                                                    <th scope="col">Notlandırma</th>
+                                                <tr>      
+                                                    <th scope="col" data-filter-control="input" data-sortable="true">
+                                                        ID
+                                                    </th>
+                                                    <th scope="col" data-filter-control="input" data-sortable="true">Adı Soyadı</th>
+                                                    <th scope="col" data-filter-control="input" data-sortable="true">Değerlendirme Tarihi</th>
+                                                    <th scope="col" data-filter-control="input" data-sortable="true">Başarı Durumu</th>
+                                                    <th scope="col" data-filter-control="input" data-sortable="true">Firma</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
                                                 <tr>
                                                     <th scope="row">1</th>
                                                     <td>John</td>
-                                                    <td><a href="#">Görüntüle</a></td>
-                                                    <td><a href="#">Görüntüle</a></td>
-                                                    <td><a href="#">Görüntüle</a></td>
-                                                    <td><button type="button" class="btn btn-primary" style="background-color:#009933;" data-toggle="modal" data-target="#belgeModal">Değerlendir</button></td>
-                                                    <td><button type="button" class="btn btn-primary" style="background-color:#009933;" data-toggle="modal" data-target="#notModal">Notlandır</button></td>                                                 
+                                                    <td>..</td>
+                                                    <td>..</td>
+                                                    <td>..</td>                                              
                                                 </tr>
                                                 <tr>
                                                     <th scope="row">2</th>
                                                     <td>Mark</td>
-                                                    <td><a href="#">Görüntüle</a></td>
-                                                    <td><a href="#">Görüntüle</a></td>
-                                                    <td><a href="#">Görüntüle</a></td>
-                                                    <td><button type="button" class="btn btn-primary" style="background-color:#009933;" data-toggle="modal" data-target="#belgeModal">Değerlendir</button></td>
-                                                    <td><button type="button" class="btn btn-primary" style="background-color:#009933;" data-toggle="modal" data-target="#notModal">Notlandır</button></td>                                                                                     
+                                                    <td>..</td>
+                                                    <td>..</td>
+                                                    <td>..</td>                                                                                  
                                                 </tr>
                                                 <tr>
                                                     <th scope="row">3</th>
                                                     <td>Jacob</td>
-                                                    <td><a href="#">Görüntüle</a></td>
-                                                    <td><a href="#">Görüntüle</a></td>
-                                                    <td><a href="#">Görüntüle</a></td>
-                                                    <td><button type="button" class="btn btn-primary" style="background-color:#009933;" data-toggle="modal" data-target="#belgeModal">Değerlendir</button></td>
-                                                    <td><button type="button" class="btn btn-primary" style="background-color:#009933;" data-toggle="modal" data-target="#notModal">Notlandır</button></td>    
+                                                    <td>..</td>
+                                                    <td>..</td>
+                                                    <td>..</td>    
                                                 </tr>
                                             </tbody>
                                         </table>
@@ -320,27 +314,27 @@
                                     aria-label="default input example" disabled>
                                     <label for="kurumAdi">Kurum Adı</label>
                         </div>
-                        <h6>İME Notlandırma</h6>
+                        <h6>Staj Notlandırma</h6>
                         <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio7"
-                                value="option7">
-                            <label class="form-check-label" for="inlineRadio7">Başarılı</label>
+                            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2"
+                                value="option2">
+                            <label class="form-check-label" for="inlineRadio2">Başarılı</label>
                         </div>
                         <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio8"
-                                value="option8">
-                            <label class="form-check-label" for="inlineRadio8">Başarısız</label>
+                            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2"
+                                value="option2">
+                            <label class="form-check-label" for="inlineRadio2">Başarısız</label>
                         </div>
                         <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio9"
-                                value="option9">
-                            <label class="form-check-label" for="inlineRadio9">Eksik</label>
+                            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1"
+                                value="option1">
+                            <label class="form-check-label" for="inlineRadio1">Eksik</label>
                         </div>
                         <div class="form-floating mb-3">
                             <input type = "text" class="form-control" id="aciklama"
                                         placeholder="aciklama"
                                     aria-label="default input example">
-                                    <label for="eksikBelge">Kabul edilen gün sayısı</label>
+                                    <label for="eksikBelge">Kabul Edilen Gün Sayısı</label>
                         </div>                        
                     </div>
                     <div class="modal-footer">

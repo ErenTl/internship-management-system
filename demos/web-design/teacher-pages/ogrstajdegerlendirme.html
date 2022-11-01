@@ -44,6 +44,7 @@
 
 
         <!-- Sidebar Start -->
+       
                 <div class="sidebar pe-4 pb-3">
                     <nav class="navbar bg-light navbar-light">
                         <img src="https://www.kouvakif.org.tr/img/logo/footer.png " weight="120" height="120" style="display: block; margin: auto;"/>
@@ -67,6 +68,13 @@
                                 <div class="dropdown-menu bg-transparent border-0">
                                     <a href="ogrstajdegerlendirme.html" class="dropdown-item">Staj Değerlendirme</a>
                                     <a href="ogrimedegerlendirme.html" class="dropdown-item">İME Değerlendirme</a>
+                                </div>
+                            </div>
+                            <div class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fa fa-user me-2"></i>Öğrenci Takip</a>
+                                <div class="dropdown-menu bg-transparent border-0">
+                                    <a href="ogrstajtakip.html" class="dropdown-item">Staj Takip</a>
+                                    <a href="ogrimetakip.html" class="dropdown-item">İME Takip</a>
                                 </div>
                             </div>
                         </div>
@@ -174,7 +182,7 @@
                                 <div class="bg-light rounded h-100 p-4">
                                     <h6 class="mb-4">Öğrenci Listele</h6>
                                     <div class="table-responsive">
-                                        <table class="table">
+                                        <table class="table table-hover">
                                             <thead>
                                                 <tr>
                                                     <th scope="col">ID</th>
@@ -183,7 +191,8 @@
                                                     <th scope="col">Staj Defteri</th>
                                                     <th scope="col">Staj Değerlendirme Formu</th>
                                                     <th scope="col">Belge Değerlendirme</th>
-                                                    <th scope="col">Notlandırma</th>
+                                                    <th scope="col">Staj 1</th>
+                                                    <th scope="col">Staj 2</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -194,6 +203,7 @@
                                                     <td><a href="#">Görüntüle</a></td>
                                                     <td><a href="#">Görüntüle</a></td>
                                                     <td><button type="button" class="btn btn-primary" style="background-color:#009933;" data-toggle="modal" data-target="#belgeModal">Değerlendir</button></td>
+                                                    <td><button type="button" class="btn btn-primary" style="background-color:#009933;" data-toggle="modal" data-target="#notModal">Notlandır</button></td>
                                                     <td><button type="button" class="btn btn-primary" style="background-color:#009933;" data-toggle="modal" data-target="#notModal">Notlandır</button></td>                                                 
                                                 </tr>
                                                 <tr>
@@ -203,6 +213,7 @@
                                                     <td><a href="#">Görüntüle</a></td>
                                                     <td><a href="#">Görüntüle</a></td>
                                                     <td><button type="button" class="btn btn-primary" style="background-color:#009933;" data-toggle="modal" data-target="#belgeModal">Değerlendir</button></td>
+                                                    <td><button type="button" class="btn btn-primary" style="background-color:#009933;" data-toggle="modal" data-target="#notModal">Notlandır</button></td>
                                                     <td><button type="button" class="btn btn-primary" style="background-color:#009933;" data-toggle="modal" data-target="#notModal">Notlandır</button></td>                                                                                     
                                                 </tr>
                                                 <tr>
@@ -212,6 +223,7 @@
                                                     <td><a href="#">Görüntüle</a></td>
                                                     <td><a href="#">Görüntüle</a></td>
                                                     <td><button type="button" class="btn btn-primary" style="background-color:#009933;" data-toggle="modal" data-target="#belgeModal">Değerlendir</button></td>
+                                                    <td><button type="button" class="btn btn-primary" style="background-color:#009933;" data-toggle="modal" data-target="#notModal">Notlandır</button></td>
                                                     <td><button type="button" class="btn btn-primary" style="background-color:#009933;" data-toggle="modal" data-target="#notModal">Notlandır</button></td>    
                                                 </tr>
                                             </tbody>
@@ -300,7 +312,7 @@
                             <div class="col-lg-4">
                                 <div class="form-floating mb-3">
                                     <input type = "text" class="form-control" id="isGunu"
-                                                placeholder="isGunu"
+                                            placeholder="isGunu"
                                             aria-label="default input example" disabled>
                                             <label for="ısGunu">İş Günü Sayısı</label>
                                 </div>
@@ -308,16 +320,32 @@
                         </div>
                         <div class="form-floating mb-3">
                             <input type = "text" class="form-control" id="kurumAdi"
-                                        placeholder="kurumAdi"
+                                    placeholder="kurumAdi"
                                     aria-label="default input example" disabled>
                                     <label for="kurumAdi">Kurum Adı</label>
                         </div>
+                        <h6>Staj Notlandırma</h6>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2"
+                                value="option2">
+                            <label class="form-check-label" for="inlineRadio2">Başarılı</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2"
+                                value="option2">
+                            <label class="form-check-label" for="inlineRadio2">Başarısız</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1"
+                                value="option1">
+                            <label class="form-check-label" for="inlineRadio1">Eksik</label>
+                        </div>
                         <div class="form-floating mb-3">
-                            <input type = "text" class="form-control" id="ogrNot"
-                                        placeholder="ogrNot"
+                            <input type = "text" class="form-control" id="aciklama"
+                                        placeholder="aciklama"
                                     aria-label="default input example">
-                                    <label for="ogrNot">Öğrenci Not</label>
-                        </div>                       
+                                    <label for="eksikBelge">Kabul Edilen Gün Sayısı</label>
+                        </div>                        
                     </div>
                     <div class="modal-footer">
                       <button type="button" class="btn btn-primary" style="background-color:#009933;">Kaydet</button>
@@ -345,7 +373,7 @@
                             <input type = "text" class="form-control" id="aciklama"
                                         placeholder="aciklama"
                                     aria-label="default input example">
-                                    <label for="aciklama">Açıklama</label>
+                                    <label for="eksikBelge">Açıklama</label>
                         </div>
                         <div class="form-check form-check-inline">
                             <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2"
