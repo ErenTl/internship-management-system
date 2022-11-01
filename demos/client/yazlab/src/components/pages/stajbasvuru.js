@@ -1,6 +1,24 @@
+import { useState } from "react";
+import { useCreateStaj } from "../hooks/useCreateStaj";
+
 function Stajbasvuru() {
 
+    const {user, role, id, accessToken, previousLogin} = JSON.parse(localStorage.getItem('user'));
+    console.log(user);
+    const {intern} = useCreateStaj();
+
+    const [addressInfo, setAddressInfo] = useState("");
+    const [workDay, setWorkDay] = useState();
+    const [internshipType, setInternshipType] = useState();
+    const [sgk, setSgk] = useState(true);
+
+  
+    const creatingHandler = async (e) => {
+        e.preventDefault();
     
+        await intern(id, password);
+      }
+
     return (
         <>
          <div class="container-fluid pt-4 px-4">
@@ -12,27 +30,27 @@ function Stajbasvuru() {
                                 <div class="col-xl-6">
                                 <div class="form-floating mb-3">
                                     <input type = "text" class="form-control" id="adSoyad"
-                                                placeholder="adSoyad"
-                                            aria-label="default input example"/>
+                                                placeholder="adSoyad"  value={user.firstName + " " + user.lastName}
+                                            aria-label="default input example" disabled/>
                                             <label for="adSoyad">Ad Soyad</label>
                                 </div>
                                 <div class="form-floating mb-3">
                                     <input type = "text" class="form-control" id="tc"
-                                                placeholder="tc"
-                                            aria-label="default input example"/>
+                                                placeholder="tc" value={user.tc}
+                                            aria-label="default input example" disabled/>
                                             <label for="tc">TC</label>
                                 </div>
                                 <div class="form-floating mb-3">
                                     <input type = "text" class="form-control" id="telNo"
-                                                placeholder="telNo"
-                                            aria-label="default input example"/>
+                                                placeholder="telNo" value={user.telephone}
+                                            aria-label="default input example" disabled/>
                                             <label for="telNo">Telefon Numarası</label>
                                 </div>                              
                             </div>
                             <div class="col-xl-6">
                                 <div class="form-floating mb-3">
                                     <input type="email" class="form-control" id="floatingInput"
-                                        placeholder="name@example.com"/>
+                                        placeholder="name@example.com" value={user.email} disabled/>
                                     <label for="floatingInput">E-Mail</label>
                                 </div>
                                         <div class = "row">
