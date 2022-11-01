@@ -1,14 +1,40 @@
 import { useLogout } from "./hooks/useLogout";
 import { useUserContext } from "./hooks/useUserContext";
+import { useState} from "react";
+import { Changepass } from "./hooks/useChangePass";
 
 function Navbar({children}) {
 
-    const {user} = useUserContext()
+    //const {user} = useUserContext()
+    const {user, role, id, accessToken, previousLogin} = JSON.parse(localStorage.getItem('user'));
 
     const {logout} = useLogout();
 
     const handleClick = () => {
         logout()
+    };
+
+    const [confirmPassword, setConfirmpassword] = useState("");
+    const [oldPassword, setOldpassword] = useState("");
+    const [newPassword, setNewpassword] = useState("");
+    const {change,error,isLoading} = Changepass();
+    const [errorpass,setError] = useState("");
+    const userId = user.id;
+  
+    const changeHandler = async (e) => {
+      e.preventDefault();
+  
+      if(newPassword !== confirmPassword){
+        setOldpassword("");
+        setConfirmpassword("");
+        setNewpassword("");
+        setTimeout(() => {
+            setError("")
+        },5000);
+        return setError("Yeni şifreyi yanlış girdiniz.");
+    }
+
+      await change(userId, oldPassword, newPassword);
     }
 
     return (
@@ -29,8 +55,8 @@ function Navbar({children}) {
                         <div class="bg-success rounded-circle border border-2 border-white position-absolute end-0 bottom-0 p-1"></div>
                     </div>
                     <div class="ms-3">
-                        <h6 class="mb-0">{user.user.firstName +" "+ user.user.lastName}</h6>
-                        <span>{user.role}</span>
+                        <h6 class="mb-0">{user.firstName +" "+ user.lastName}</h6>
+                        <span>{role}</span>
                     </div>
                 </div>
                 <div class="navbar-nav w-100">
@@ -141,7 +167,7 @@ function Navbar({children}) {
                     <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
                             <img class="rounded-circle me-lg-2" src="img/user.jpg" alt="" style={{width: 40, height: 40}}/>
-                            <span class="d-none d-lg-inline-flex">{user.user.firstName +" "+ user.user.lastName}</span>
+                            <span class="d-none d-lg-inline-flex">{user.firstName +" "+ user.lastName}</span>
                         </a>
                         <div class="dropdown-menu dropdown-menu-end bg-light border-0 rounded-0 rounded-bottom m-0">
                             <a href="#" class="dropdown-item"><button type="button" class="btn btn-primary" style={{backgroundColor:'#009933'}}  data-toggle="modal" data-target="#exampleModal">
@@ -164,26 +190,44 @@ function Navbar({children}) {
                           <span aria-hidden="true">&times;</span>
                         </button>
                       </div>
-                      <div class="modal-body">
+                      <form onSubmit={changeHandler}><div class="modal-body">
                           <div class="form-floating mb-3">
-                              <input type="password" class="form-control" id="floatingPassword"
-                                  placeholder="Password"/>
+                              <input type="password" 
+                              class="form-control" 
+                              id="floatingPassword"
+                                  placeholder="Password"
+                                  onChange={(e) => setOldpassword(e.target.value)}
+							value={oldPassword}
+							required/>
                               <label htmlFor="floatingPassword">Mevcut şifreniz</label>
                           </div>
                           <div class="form-floating mb-3">
-                              <input type="password" class="form-control" id="floatingPassword"
-                                  placeholder="Password"/>
+                              <input type="password" 
+                              class="form-control" 
+                              id="floatingPassword"
+                              placeholder="Password"      
+                              onChange={(e) => setNewpassword(e.target.value)}
+							value={newPassword}
+							required/>
                               <label htmlFor="floatingPassword">Yeni şifreniz</label>
                           </div>
                           <div class="form-floating mb-3">
-                              <input type="password" class="form-control" id="floatingPassword"
+                              <input type="password" 
+                              class="form-control"
+                               id="floatingPassword"
+                               onChange={(e) => setConfirmpassword(e.target.value)}
+							value={confirmPassword}
+							required
                                   placeholder="Password"/>
                               <label htmlFor="floatingPassword">Yeni şifreniz</label>
                           </div>
                       </div>
                       <div class="modal-footer">
-                        <button type="button" class="btn btn-primary" style={{backgroundColor:'#009933'}}>Kaydet</button>
+                        <button type="submit" class="btn btn-primary" style={{backgroundColor:'#009933'}} disabled={isLoading}>Kaydet</button>
+                        {errorpass && <span className="error-message">{errorpass}</span>}
+                        {error&& <div className="error-message">{error}</div>}
                       </div>
+                      </form>
                     </div>
                   </div>
               </div>

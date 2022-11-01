@@ -27,6 +27,14 @@ namespace IMSWebAPI.Controllers
             return await _context.Districts.ToListAsync();
         }
 
+        // GET: api/Districts/FromCityId/
+        [HttpGet("fromcityid/{id}")]
+        public async Task<ActionResult<IEnumerable<District>>> getDistrictsFromCityId(int id)
+        {
+            return await _context.Districts.Where(d => d.CityId == id).ToListAsync();
+        }
+
+
         // GET: api/Districts/5
         [HttpGet("{id}")]
         public async Task<ActionResult<District>> GetDistrict(int id)
