@@ -1,0 +1,31 @@
+Example:
+{
+    "userName": "201307008",
+    "password": "beneren"
+}
+
+Return:
+{
+    "user": {
+      "id": 1,
+      "departmentId": 6,
+      "firstName": "Eren2",
+      "lastName": "Torun",
+      "password": null,
+      "email": "beneyim@gmail.com",
+      "telephone": "905385505368",
+      "tc": "11111111110",
+      "lastLogin": null,
+      "department": null,
+      "student": {
+        "userId": 1,
+        "studentNumber": "201307008",
+        "studentInternships": []
+      },
+      "teacher": null,
+      "admins": []
+    },
+    "id": "201307008",
+    "role": "student",
+    "accessToken": null
+}
