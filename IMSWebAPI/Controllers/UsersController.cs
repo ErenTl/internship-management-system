@@ -42,6 +42,12 @@ namespace IMSWebAPI.Controllers
                 
                 if(pswHash == Hashing.MD5Hash(unap.Password))
                 {
+                    if(user.LastLogin != null)
+                    {
+                        afterLoginInfo.previousLogin = user.LastLogin;
+                        user.LastLogin = DateOnly.FromDateTime(DateTime.Now);
+                        await _context.SaveChangesAsync();
+                    }
                     afterLoginInfo.user = user;
                     afterLoginInfo.user.Password = null;
                     afterLoginInfo.id = student.StudentNumber;
@@ -133,6 +139,10 @@ namespace IMSWebAPI.Controllers
             if(user.Password == Hashing.MD5Hash(nop.oldPassword))
             {
                 user.Password = Hashing.MD5Hash(nop.newPassword);
+                if(user.LastLogin == null)
+                {
+                    user.LastLogin = DateOnly.FromDateTime(DateTime.Now);
+                }
                 await _context.SaveChangesAsync();
                 return true;
             }
