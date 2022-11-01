@@ -1,4 +1,4 @@
-import { StajContext } from '../context/StajContext'
+import { StajContext } from '../contexts/stajContext';
 import { useContext } from 'react'
 
 export const useStajContext = () => {
