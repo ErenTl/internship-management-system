@@ -20,7 +20,7 @@ function Stajbasvuru() {
     const [fax, setFax] = useState("");
     const [email, setEmail] = useState("");
     // const [fieldId, setFieldId] = useState();
-
+    //j
 
   
     const creatingHandler = async (e) => {
