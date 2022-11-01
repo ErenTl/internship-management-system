@@ -1,11 +1,16 @@
 APIS:
+    User:
+        Giriş               :check
+        Şifre değiştirme    :check
     Öğretmen:
         Not verilecek öğrenciler ekranı için API
     Komisyon:
-        Staj yapacak kişilerin görüntülenmesi için API
+        Staj yapacak kişilerin görüntülenmesi için API2
+            
         Staj yapacak kişilerin yüklediği başvuru belgesinin görünüp onaylanacağı ekran için API
         Stajdan sonra öğrencilerin staj defteri ve değerlendirme formunun onaylanması için API
         Staj Sınavlarının öğretmenlere atanması için API
     Öğrenci:
         Staj defteri ve değerlendirme formu için API
         Staj sınavının zamanını görüntülemeleri için API
+        
