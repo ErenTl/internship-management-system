@@ -1,5 +1,8 @@
 import { useState } from "react";
 import { useCreateStaj } from "../hooks/useCreateStaj";
+import {variables} from '../../Variables.js';
+import { useEffect } from 'react';
+
 
 function Stajbasvuru() {
 
@@ -11,14 +14,63 @@ function Stajbasvuru() {
     const [workDay, setWorkDay] = useState();
     const [internshipType, setInternshipType] = useState();
     const [sgk, setSgk] = useState(true);
+    const [cities, setCities] = useState([]);
+    const [districts, setDistricts] = useState([]);
+    const [postalCode, setPostalCode] = useState(0);
+    
+    
+        // useEffect(()=>{
+        //     // fetch(variables.API_URL + "Cities", {
+        //     //     headers: {
+        //     //         'Accept': 'application/json'
+        //     //     }
+        //     // })
+        //     // .then(response => response.json())
+        //     // .then(data => {
+        //     //     setCities(data);
+        //     // });
+        //     // console.log(cities);
+        //     console.log()
+        // }, []) // <-- empty dependency array
+      
+        useEffect(
+            // Effect from first render
+            () => {
+                fetch(variables.API_URL + "Cities", {
+                 headers: {
+                     'Accept': 'application/json'
+                     }
+                 })
+                .then(response => response.json())
+                .then(data => {
+                    setCities(data);
+                });
+                console.log(cities);
+                console.log("çalış");
+            },
+            [] // Never re-runs
+        );
 
-  
+        function handleCityChange(id) {
+            fetch(variables.API_URL + "districts/fromcityid/" + id, {
+                headers: {
+                    'Accept': 'application/json'
+                }
+            })
+            .then(response => response.json())
+            .then(data => {
+                setDistricts(data);
+            });
+        }
+    
+    
     const creatingHandler = async (e) => {
         e.preventDefault();
     
         await intern(id, password);
-      }
+    }
 
+    
     return (
         <>
          <div class="container-fluid pt-4 px-4">
@@ -57,11 +109,12 @@ function Stajbasvuru() {
                                             <div class="col-lg-4">
                                                 <div class="form-floating mb-3">
                                                     <select class="form-select" id="floatingSelectIl"
+                                                        onChange={() => handleCityChange(event.target.value)}
                                                         aria-label="Floating label select example">
                                                         <option selected>Seçiniz</option>
-                                                        <option value="1">One</option>
-                                                        <option value="2">Two</option>
-                                                        <option value="3">Three</option>
+                                                        {cities.map(city => 
+                                                            <option value={city.id}>{city.name}</option>
+                                                        )}
                                                     </select>
                                                     <label for="floatingSelectIl">İl</label>
                                                 </div>
@@ -69,11 +122,12 @@ function Stajbasvuru() {
                                         <div class="col-lg-4">
                                             <div class="form-floating mb-3">
                                                 <select class="form-select" id="floatingSelectIlce"
+                                                    onChange={() => setPostalCode(event.target.value)}
                                                     aria-label="Floating label select example">
-                                                    <option selected>Seçiniz</option>
-                                                    <option value="1">One</option>
-                                                    <option value="2">Two</option>
-                                                    <option value="3">Three</option>
+                                                    <option selected>Seçiniz</option> 
+                                                    {districts.map(district => 
+                                                        <option value={district.id}>{district.name}</option>
+                                                    )}
                                                 </select>
                                                 <label for="floatingSelectIlce">İlçe</label>
                                             </div>
@@ -81,8 +135,8 @@ function Stajbasvuru() {
                                         <div class="col-lg-4">
                                             <div class="form-floating mb-3">
                                                 <input type="email" class="form-control" id="floatingInput"
-                                                    placeholder="name@example.com"/>
-                                                <label for="floatingInput">Posta Kodu</label>
+                                                    placeholder="name@example.com" disabled/>
+                                                <label for="floatingInput">{postalCode==0 ? "Posta Kodu" : postalCode}</label>
                                             </div>
                                         </div>                           
                                     </div>  
