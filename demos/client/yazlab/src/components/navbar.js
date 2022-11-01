@@ -1,4 +1,16 @@
+import { useLogout } from "./hooks/useLogout";
+import { useUserContext } from "./hooks/useUserContext";
+
 function Navbar({children}) {
+
+    const {user} = useUserContext()
+
+    const {logout} = useLogout();
+
+    const handleClick = () => {
+        logout()
+    }
+
     return (
       <>
   
@@ -17,8 +29,8 @@ function Navbar({children}) {
                         <div class="bg-success rounded-circle border border-2 border-white position-absolute end-0 bottom-0 p-1"></div>
                     </div>
                     <div class="ms-3">
-                        <h6 class="mb-0">Jhon Doe</h6>
-                        <span>Admin</span>
+                        <h6 class="mb-0">{user.user.firstName +" "+ user.user.lastName}</h6>
+                        <span>{user.role}</span>
                     </div>
                 </div>
                 <div class="navbar-nav w-100">
@@ -129,13 +141,13 @@ function Navbar({children}) {
                     <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
                             <img class="rounded-circle me-lg-2" src="img/user.jpg" alt="" style={{width: 40, height: 40}}/>
-                            <span class="d-none d-lg-inline-flex">John Doe</span>
+                            <span class="d-none d-lg-inline-flex">{user.user.firstName +" "+ user.user.lastName}</span>
                         </a>
                         <div class="dropdown-menu dropdown-menu-end bg-light border-0 rounded-0 rounded-bottom m-0">
                             <a href="#" class="dropdown-item"><button type="button" class="btn btn-primary" style={{backgroundColor:'#009933'}}  data-toggle="modal" data-target="#exampleModal">
                                 Şifre Değiştirme
                               </button></a>
-                            <a href="#" class="dropdown-item"><button type="button" class="btn btn-outline-secondary m-2">Çıkış</button></a>
+                            <a href="/login" class="dropdown-item"><button type="button" class="btn btn-outline-secondary m-2" onClick={handleClick}>Çıkış</button></a>
                         </div>
                     </div>
                 </div>

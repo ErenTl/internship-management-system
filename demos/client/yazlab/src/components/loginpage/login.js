@@ -18,7 +18,7 @@ const Login = () => {
   }
 
     return(
-    <body className="lbody">
+    <div className="lbody">
       <div className="container">
 	<div className="form-container sign-in-container">
 		<form className="lform"action="#" onSubmit={loginHandler}>
@@ -38,7 +38,7 @@ const Login = () => {
 		</div>
 	</div>
 </div>
-</body>
+</div>
     );
   }
   export default Login;
