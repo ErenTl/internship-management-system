@@ -4,11 +4,11 @@ import { useUserContext } from '../hooks/useUserContext'
 
   
     // const [text, setText] = useState('')
-    // const [error, setError] = useState(null)
-    // const [emptyFields, setEmptyFields] = useState([])
+    
   
 export const useCreateStaj = async (e) => {
-    
+    const [error, setError] = useState(null)
+    const [emptyFields, setEmptyFields] = useState([])
     const { dispatch } = useStajContext()
     const { user } = useUserContext()
       e.preventDefault()
@@ -20,7 +20,7 @@ export const useCreateStaj = async (e) => {
   
       const intern = async(endingDate, startingDate, workDay,
         internshipType, sgk, _25age, gss, stateContribution,
-        autumnPeriod, manager, districtId, addressInfo, formalName
+         manager, districtId, addressInfo, formalName
         , telephone, fax, email, fieldId, studentId) =>{
   
       const response = await fetch('/api/Internship', {
@@ -34,7 +34,6 @@ export const useCreateStaj = async (e) => {
             _25age:_25age,
             gss:gss,
             stateContribution:stateContribution,
-            autumnPeriod:autumnPeriod,
             manager:manager, //1-engineer / 2-teacher / 3-doctor
             address:{
                     districtId: districtId,
@@ -72,12 +71,11 @@ export const useCreateStaj = async (e) => {
         setEmptyFields(json.emptyFields)
       }
       if (response.ok) {
-        setText('')
   
         setError(null)
         setEmptyFields([])
         dispatch({type: 'CREATE_STAJ', payload: json})
       }}
 
-      return {intern}
+      return {intern, error, emptyFields}
     }
