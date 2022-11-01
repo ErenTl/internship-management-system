@@ -13,7 +13,6 @@ function Stajbasvuru() {
     const [workDay, setWorkDay] = useState();
     const [internshipType, setInternshipType] = useState();
     const [sgk, setSgk] = useState(true);
-<<<<<<< HEAD
     const [cities, setCities] = useState([]);
     const [districts, setDistricts] = useState([]);
     const [postalCode, setPostalCode] = useState(0);
@@ -50,19 +49,6 @@ function Stajbasvuru() {
             },
             [] // Never re-runs
         );
-=======
-    const [age, setAge] = useState(true);
-    const [gss, setGss] = useState(true);
-    // const [manager, setManager] = useState();
-    // const [districtId, setDistrictId] = useState(true);
-    const [addressInfo, setAddressInfo] = useState("");
-    const [formalName, setFormalName] = useState("");
-    const [telephone, setTelephone] = useState("");
-    const [fax, setFax] = useState("");
-    const [email, setEmail] = useState("");
-    // const [fieldId, setFieldId] = useState();
-
->>>>>>> 072c32a27a1ea62087e3a81cce80bc527919affb
 
         function handleCityChange(id) {
             fetch(variables.API_URL + "districts/fromcityid/" + id, {
@@ -80,13 +66,8 @@ function Stajbasvuru() {
     const creatingHandler = async (e) => {
         e.preventDefault();
     
-<<<<<<< HEAD
-        await intern(id, password);
-    }
-=======
         await intern(workDay, sgk, age, gss, internshipType, addressInfo, fax, email, telephone, formalName );
       }
->>>>>>> 072c32a27a1ea62087e3a81cce80bc527919affb
 
     
     return (
