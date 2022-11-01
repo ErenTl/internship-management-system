@@ -8,12 +8,12 @@ function Stajbasvuru() {
 
     const {user, role, id, accessToken, previousLogin} = JSON.parse(localStorage.getItem('user'));
     console.log(user);
-    const {intern} = useCreateStaj();
+    const {intern, error, emptyFields} = useCreateStaj();
 
-    const [addressInfo, setAddressInfo] = useState("");
     const [workDay, setWorkDay] = useState();
     const [internshipType, setInternshipType] = useState();
     const [sgk, setSgk] = useState(true);
+<<<<<<< HEAD
     const [cities, setCities] = useState([]);
     const [districts, setDistricts] = useState([]);
     const [postalCode, setPostalCode] = useState(0);
@@ -50,6 +50,19 @@ function Stajbasvuru() {
             },
             [] // Never re-runs
         );
+=======
+    const [age, setAge] = useState(true);
+    const [gss, setGss] = useState(true);
+    // const [manager, setManager] = useState();
+    // const [districtId, setDistrictId] = useState(true);
+    const [addressInfo, setAddressInfo] = useState("");
+    const [formalName, setFormalName] = useState("");
+    const [telephone, setTelephone] = useState("");
+    const [fax, setFax] = useState("");
+    const [email, setEmail] = useState("");
+    // const [fieldId, setFieldId] = useState();
+
+>>>>>>> 072c32a27a1ea62087e3a81cce80bc527919affb
 
         function handleCityChange(id) {
             fetch(variables.API_URL + "districts/fromcityid/" + id, {
@@ -67,8 +80,13 @@ function Stajbasvuru() {
     const creatingHandler = async (e) => {
         e.preventDefault();
     
+<<<<<<< HEAD
         await intern(id, password);
     }
+=======
+        await intern(workDay, sgk, age, gss, internshipType, addressInfo, fax, email, telephone, formalName );
+      }
+>>>>>>> 072c32a27a1ea62087e3a81cce80bc527919affb
 
     
     return (
@@ -142,7 +160,7 @@ function Stajbasvuru() {
                                     </div>  
                                     <div class="form-floating">
                                 <textarea class="form-control" placeholder="Leave a comment here"
-                                    id="floatingTextarea" style={{width: "100%"}}></textarea>
+                                    id="floatingTextarea" style={{width: "100%"}} ></textarea>
                                 <label for="floatingTextarea">Adres Açıklaması</label>
                                     </div>
                                 </div>
@@ -173,7 +191,8 @@ function Stajbasvuru() {
                                 <div class="col-lg-4">
                                     <div class="form-floating mb-3">
                                         <input type = "text" class="form-control" id="isGunu"
-                                                    placeholder="isGunu"
+                                                    placeholder="isGunu" value={workDay}
+                                                    onChange={(e) => setWorkDay(e.target.value)}
                                                 aria-label="default input example"/>
                                                 <label for="ısGunu">İş Günü Sayısı</label>
                                     </div>
@@ -187,14 +206,16 @@ function Stajbasvuru() {
                                             <div class="col-sm-10">
                                                 <div class="form-check">
                                                     <input class="form-check-input" type="radio" name="gridRadios"
-                                                        id="gridRadios1" value="option1" checked/>
+                                                        id="gridRadios1" value={internshipType}
+                                                        onClick={() => setInternshipType('Staj 1')} checked/>
                                                     <label class="form-check-label" for="gridRadios1">
                                                         Staj 1
                                                     </label>
                                                 </div>
                                                 <div class="form-check">
                                                     <input class="form-check-input" type="radio" name="gridRadios"
-                                                        id="gridRadios2" value="option2"/>
+                                                        id="gridRadios2" value={internshipType}
+                                                        onClick={() => setInternshipType('Staj 2')}/>
                                                     <label class="form-check-label" for="gridRadios2">
                                                         Staj 2
                                                     </label>
@@ -207,18 +228,23 @@ function Stajbasvuru() {
                                     <div class="form-floating mb-3">
                                         <h6>Ailemden, kendimden veya anne-baba üzerinden genel sağlık sigortası kapsamında sağlık hizmeti alıyorum:</h6>
                                         <fieldset class="row mb-3">         
-                                            <div class="col-sm-10">
-                                                <div class="form-check">
+                                            <div class="col-sm-10 " >
+                                                <div class="form-check" >
                                                     <input class="form-check-input" type="radio" name="gridRadios"
-                                                        id="gridRadios1" value="option1" checked/>
+                                                        id="gridRadios1" checked value={sgk}
+                                                        onClick={() => setSgk(true)}/>
                                                     <label class="form-check-label" for="gridRadios1">
                                                         Evet
                                                     </label>
                                                 </div>
                                                 <div class="form-check">
                                                     <input class="form-check-input" type="radio" name="gridRadios"
-                                                        id="gridRadios2" value="option2"/>
+                                                        id="gridRadios2" value={sgk}
+                                                    
+                                                        onClick={() => setSgk(false)}
+                                                        />
                                                     <label class="form-check-label" for="gridRadios2">
+                                                       
                                                         Hayır
                                                     </label>
                                                 </div>
@@ -235,14 +261,17 @@ function Stajbasvuru() {
                                             <div class="col-sm-10">
                                                 <div class="form-check">
                                                     <input class="form-check-input" type="radio" name="gridRadios"
-                                                        id="gridRadios1" value="option1" checked/>
+                                                        id="gridRadios1" checked
+                                                        value={gss}
+                                                        onClick={() => setGss(true)}/>
                                                     <label class="form-check-label" for="gridRadios1">
                                                         Evet
                                                     </label>
                                                 </div>
                                                 <div class="form-check">
                                                     <input class="form-check-input" type="radio" name="gridRadios"
-                                                        id="gridRadios2" value="option2"/>
+                                                        id="gridRadios2" value={gss}
+                                                        onClick={() => setGss(false)}/>
                                                     <label class="form-check-label" for="gridRadios2">
                                                        Hayır
                                                     </label>
@@ -258,14 +287,18 @@ function Stajbasvuru() {
                                             <div class="col-sm-10">
                                                 <div class="form-check">
                                                     <input class="form-check-input" type="radio" name="gridRadios"
-                                                        id="gridRadios1" value="option1" checked/>
+                                                        id="gridRadios1" checked
+                                                        value={age}
+                                                        onClick={() => setAge(true)}/>
                                                     <label class="form-check-label" for="gridRadios1">
                                                        Evet
                                                     </label>
                                                 </div>
                                                 <div class="form-check">
                                                     <input class="form-check-input" type="radio" name="gridRadios"
-                                                        id="gridRadios2" value="option2"/>
+                                                        id="gridRadios2" 
+                                                        value={age}
+                                                        onClick={() => setAge(false)}/>
                                                     <label class="form-check-label" for="gridRadios2">
                                                         Hayır
                                                     </label>
@@ -288,25 +321,33 @@ function Stajbasvuru() {
                                         <div class="form-floating mb-3">
                                             <input type = "text" class="form-control" id="faaliyetAlani"
                                                         placeholder="faaliyetAlani"
-                                                    aria-label="default input example"/>
+                                                    aria-label="default input example"
+                                                    value={formalName}
+                                                    onChange={(e) => setFormalName(e.target.value)}/>
                                                     <label for="faaliyetAlani">Faaliyet Alanı</label>                                            
                                         </div>
                                         <div class="form-floating mb-3">
                                             <input type="email" class="form-control" id="floatingInput"
-                                                placeholder="name@example.com"/>
+                                                placeholder="name@example.com"
+                                                value={email}
+                                                    onChange={(e) => setEmail(e.target.value)}/>
                                             <label for="floatingInput">E-Mail</label>
                                             
                                         </div>
                                         <div class="form-floating mb-3">
                                             <input type = "text" class="form-control" id="telNo"
                                                         placeholder="telNo"
-                                                    aria-label="default input example"/>
+                                                    aria-label="default input example"
+                                                    value={telephone}
+                                                    onChange={(e) => setTelephone(e.target.value)}/>
                                                     <label for="telNo">Telefon Numarası</label>
                                         </div>
                                         <div class="form-floating mb-3">
                                             <input type = "text" class="form-control" id="faxNo"
                                                         placeholder="faxNo"
-                                                    aria-label="default input example"/>
+                                                    aria-label="default input example"
+                                                    value={fax}
+                                                    onChange={(e) => setFax(e.target.value)}/>
                                                     <label for="faxNo">Fax Numarası</label>
                                         </div>
                                     </div>
@@ -352,7 +393,9 @@ function Stajbasvuru() {
                                             </div> 
                                             <div class="form-floating mb-3">
                                                 <textarea class="form-control" placeholder="Leave a comment here"
-                                                    id="floatingTextarea" style={{width: "100%"}}></textarea>
+                                                    id="floatingTextarea" style={{width: "100%"}} 
+                                                    value={addressInfo}
+                                                    onChange={(e) => setAddressInfo(e.target.value)}></textarea>
                                                 <label for="floatingTextarea">Adres Açıklaması</label>
                                             </div>  
                                             <div class="form-floating mb-3">
@@ -399,10 +442,11 @@ function Stajbasvuru() {
             </div>
                     <br/>
                     <div class="m-n2" style={{position: "absolute", right: 5}}>
-                        <button type="button" class="btn btn-success rounded-pill m-2 float-right" style={{backgroundColor:"#009933"}}>Kaydet</button>
+                        <button type="button" class="btn btn-success rounded-pill m-2 float-right" style={{backgroundColor:"#009933"}} onClick={creatingHandler}>Kaydet</button>
                         <button type="button" class="btn btn-success rounded-pill m-2" style={{backgroundColor:"#009933"}}>PDF Oluştur</button>
                         <button type="button" class="btn btn-success rounded-pill m-2" style={{backgroundColor:"#009933"}}>Dosyayı kaydet</button>
                     </div>
+                    {error && <div className="error">{error}</div>}
                     
          </>
     )

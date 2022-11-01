@@ -5,13 +5,16 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter as Router } from "react-router-dom";
 import { UserContextProvider } from "./components/contexts/userContext";
+import { StajContextProvider } from "./components/contexts/stajContext";
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <Router>
       <UserContextProvider>
-        <App />
+        <StajContextProvider>
+          <App />
+        </StajContextProvider>
       </UserContextProvider>
     </Router>
   </React.StrictMode>
