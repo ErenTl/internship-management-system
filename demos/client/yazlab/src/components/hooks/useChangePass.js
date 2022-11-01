@@ -27,8 +27,8 @@ export const Changepass = () => {
             setError(json.error);
         }
         if (response.ok) {
-            localStorage.clear()
-            localStorage.setItem("user", JSON.stringify(json))
+            //localStorage.clear()
+            //localStorage.setItem("user", JSON.stringify(json))
 
             dispatch({type:"UPDATE_PASS" , payload: json})
 

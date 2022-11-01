@@ -19,7 +19,7 @@ function Navbar({children}) {
     const [newPassword, setNewpassword] = useState("");
     const {change,error,isLoading} = Changepass();
     const [errorpass,setError] = useState("");
-    const userId = id;
+    const userId = user.id;
   
     const changeHandler = async (e) => {
       e.preventDefault();
