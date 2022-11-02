@@ -1,35 +1,102 @@
-{
-    "addressId": 0,
-    "startingDate": "2022-10-30",
-    "endingDate": "2022-10-30",
+
+  {
+    "startingDate": "2022-11-02T04:35:42.847Z",
+    "endingDate": "2022-11-02T04:35:42.847Z",
     "workDay": 0,
-    "internshipType": 1,
+    "internshipType": 0,
     "sgk": true,
     "_25age": true,
     "gss": true,
     "stateContribution": true,
     "autumnPeriod": true,
-    "manager": 1,
+    "manager": 0,
     "address": {
-      "districtId": 3,
-      "addressInfo": "string",
-      "companies": [
+      "districtId": 0,
+      "addressInfo": "strin g"
+    },
+    "company": {
+      "formalName": "string",
+      "telephone": "string",
+      "fax": "string",
+      "email": "string",
+      "address": {
+        "districtId": 0,
+        "addressInfo": "strin g"
+      },
+      "companyFields": [
         {
-          "formalName": "sddd",
-          "telephone": "0d55",
-          "fax": "dd",
-          "email": "da",
-          "companyFields": [
-            {
-              "fieldId": 3
-            }
-          ]
+          "fieldId": 0
         }
       ]
-    },
-    "studentInternships": [
-        {
-          "studentId": 1
-        }
-    ]
+    }
   }
+
+  {
+    "startingDate": "2022-11-04",
+    "endingDate": "2022-11-13",
+    "internshipType": 1,
+    "workDay": 12,
+    "sgk": true,
+    "_25age": true,
+    "gss": true,
+    "stateContribution": false,
+    "autumnPeriod": true,
+    "manager": "1",
+    "address": {
+        "districtId": "14802",
+        "addressInfo": "sadd"
+    },
+    "company": {
+        "formalName": "I just need",
+        "telephone": "05456544565",
+        "fax": "faxım benn",
+        "email": "qwe@gmail.com",
+        "address": {
+            "districtId": "55860",
+            "addressInfo": "Nokia telefonları sakladıkları yer"
+        },
+        "companyFields": [{
+            "fieldId": "7"
+        }]
+    },
+    "studentInternships": [{
+        "studentId": 1
+    }]
+}
+
+
+
+Example:
+
+    {
+      "startingDate": "2022-11-02T04:35:42.847Z",
+      "endingDate": "2022-11-02T04:35:42.847Z",
+      "workDay": 30,
+      "internshipType": 1,
+      "sgk": true,
+      "_25age": true,
+      "gss": true,
+      "stateContribution": true,
+      "autumnPeriod": true,
+      "manager": 1,
+      "address": {
+        "districtId": 11700,
+        "addressInfo": "Adanada bi yerler"
+      },
+      "company": {
+        "formalName": "Nefes holding",
+        "telephone": "05315456545",
+        "fax": "fax falan",
+        "email": "nefes@nefes.com",
+        "address": {
+            "districtId": 4400,
+            "addressInfo": "beyazlar"
+          },
+        "companyFields": [
+          {
+            "fieldId": 4
+          }
+        ]
+      }
+    }
+  
