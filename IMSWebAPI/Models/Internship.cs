@@ -26,10 +26,12 @@ namespace IMSWebAPI.Models
         public bool StateContribution { get; set; }
         public bool AutumnPeriod { get; set; }
         public short Manager { get; set; }
+        public long? CompanyId { get; set; }
 
-        public virtual Address? Address { get; set; } = null!;
-        public virtual InternshipType? InternshipTypeNavigation { get; set; } = null!;
-        public virtual ManagerType? ManagerNavigation { get; set; } = null!;
+        public virtual Address Address { get; set; } = null!;
+        public virtual Company? Company { get; set; }
+        public virtual InternshipType InternshipTypeNavigation { get; set; } = null!;
+        public virtual ManagerType ManagerNavigation { get; set; } = null!;
         public virtual ICollection<Ime> Imes { get; set; }
         public virtual ICollection<InternshipControlInfo> InternshipControlInfos { get; set; }
         public virtual ICollection<InternshipDocControl> InternshipDocControls { get; set; }
