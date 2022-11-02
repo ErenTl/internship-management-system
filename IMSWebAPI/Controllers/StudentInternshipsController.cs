@@ -42,7 +42,7 @@ namespace IMSWebAPI.Controllers
         }
 
         // GET: api/StudentInterships/getbyuserid/5
-        [HttpGet("getbyuserid{id}")]
+        [HttpGet("getbyuserid/{id}")]
         public async Task<ActionResult<IEnumerable<StudentInternship>>> GetStudentInternshipByUserId(long id)
         {
             var studentInternship = await _context.StudentInternships.Where(si => si.StudentId == id).ToListAsync();
