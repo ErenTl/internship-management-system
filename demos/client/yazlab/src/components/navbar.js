@@ -2,7 +2,8 @@ import { useLogout } from "./hooks/useLogout";
 import { useUserContext } from "./hooks/useUserContext";
 import { useState} from "react";
 import { Changepass } from "./hooks/useChangePass";
-
+import Footer from "./navbarcomps/footer";
+ 
 function Navbar({children}) {
 
     //const {user} = useUserContext()
@@ -19,7 +20,7 @@ function Navbar({children}) {
     const [newPassword, setNewpassword] = useState("");
     const {change,error,isLoading} = Changepass();
     const [errorpass,setError] = useState("");
-    const userId = user.id;
+    const userId = user.Id;
   
     const changeHandler = async (e) => {
       e.preventDefault();
@@ -62,17 +63,17 @@ function Navbar({children}) {
                 <div class="navbar-nav w-100">
                     <a href="index.html" class="nav-item nav-link active"><i class="fa fa-home me-2"></i>Ana Sayfa</a>
                     <div class="nav-item dropdown">
-                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fa fa-handshake me-2"></i>Başvurular</a>
+                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fa fa-handshake me-2"></i>Belge Oluşturma</a>
                         <div class="dropdown-menu bg-transparent border-0">
-                            <a href="/stajbasvuru" class="dropdown-item">Staj Başvurusu</a>
-                            <a href="/imebasvuru" class="dropdown-item">İME Başvurusu</a>
+                            <a href="/stajbasvuru" class="dropdown-item">Staj Başvuru Belgesi</a>
+                            <a href="/imebasvuru" class="dropdown-item">İME Başvuru Belgesi</a>
                         </div>
                     </div>
                     <div class="nav-item dropdown">
-                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fa fa-check-square me-2"></i>Başvuru Takibi</a>
+                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fa fa-check-square me-2"></i>Başvuru Kaydı</a>
                         <div class="dropdown-menu bg-transparent border-0">
-                            <a href="/stajtakip" class="dropdown-item">Staj Takibi</a>
-                            <a href="/imetakip" class="dropdown-item">İME Takibi</a>
+                            <a href="/stajtakip" class="dropdown-item">Staj Başvurusu</a>
+                            <a href="/imetakip" class="dropdown-item">İME Başvurusu</a>
                         </div>
                     </div>
                     <div class="nav-item dropdown">
@@ -179,6 +180,11 @@ function Navbar({children}) {
                 </div>
           </nav>
           {/* Navbar End */}
+          
+          
+          
+
+          
   
           {/* Modal Start */}
           <div class="modal fade" id="exampleModal" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -232,11 +238,17 @@ function Navbar({children}) {
                   </div>
               </div>
           {/* Modal End */}
+
+          
   
             {/* çocuk */}
             <div class="container-fluid pt-4 px-4">{children}</div>
+            
             </div>
+                 
         </div>
+
+        
         {/* Content End */}
         
     

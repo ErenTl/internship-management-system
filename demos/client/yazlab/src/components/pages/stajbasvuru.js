@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useCreateStaj } from "../hooks/useCreateStaj";
 import {variables} from '../../Variables.js';
 import { useEffect } from 'react';
+import Footer from "../navbarcomps/footer"
 
 
 function Stajbasvuru() {
@@ -433,6 +434,7 @@ function Stajbasvuru() {
                         </div>
                     </div>
                 </div>
+                
             </div>
                     <br/>
                     <div class="m-n2" style={{position: "absolute", right: 5}}>
