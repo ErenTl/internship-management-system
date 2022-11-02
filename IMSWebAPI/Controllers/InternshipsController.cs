@@ -31,7 +31,7 @@ namespace IMSWebAPI.Controllers
         
 
         [HttpGet("download")]
-        public async Task<IActionResult> Download(int id)
+        public async Task<IActionResult> Download(long id)
         { 
             await DownloadDeneme(id);
             return PhysicalFile("C:/Users/eren_/Documents/demos/IMS-yazlab/internship-management-system/IMSWebAPI/forms/internshipevulationform/"+id+".pdf", "application/pdf", id+".pdf");
@@ -69,12 +69,25 @@ namespace IMSWebAPI.Controllers
             var city = await _context.Cities.FindAsync(internship.Address.District.CityId);
             internship.Address.District.City = city;
 
-            var company = await _context.Companies.Where(c => c.AddressId == address.Id).FirstOrDefaultAsync();
-            internship.Address.Companies.FirstOrDefault().Id = company.Id;
+            var company = await _context.Companies.Where(c => c.Id == internship.CompanyId).FirstOrDefaultAsync();
+            internship.Company.Id = company.Id;
+
+
 
 
             var companyFields = await _context.CompanyFields.Where(cf => cf.CompanyId == company.Id).FirstOrDefaultAsync();
-            internship.Address.Companies.FirstOrDefault().CompanyFields.FirstOrDefault().Id = companyFields.Id;
+            internship.Company.CompanyFields.FirstOrDefault().Id = companyFields.Id;
+            
+            var companyAddress = await _context.Addresses.FindAsync(company.AddressId);
+            company.Address = companyAddress;
+
+            var companyDistrict = await _context.Districts.FindAsync(companyAddress.DistrictId);
+            company.Address.District = district;
+
+            var companyCity = await _context.Cities.FindAsync(company.Address.District.CityId);
+            internship.Address.District.City = city;
+
+
 
             var Fields = await _context.FieldOfActivities.Where(foa => foa.Id == companyFields.FieldId).FirstOrDefaultAsync();
             companyFields.Field = Fields;

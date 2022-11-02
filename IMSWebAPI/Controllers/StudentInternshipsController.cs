@@ -41,6 +41,20 @@ namespace IMSWebAPI.Controllers
             return studentInternship;
         }
 
+        // GET: api/StudentInterships/getbyuserid/5
+        [HttpGet("getbyuserid{id}")]
+        public async Task<ActionResult<IEnumerable<StudentInternship>>> GetStudentInternshipByUserId(long id)
+        {
+            var studentInternship = await _context.StudentInternships.Where(si => si.StudentId == id).ToListAsync();
+
+            if (studentInternship == null)
+            {
+                return NotFound();
+            }
+
+            return studentInternship;
+        }
+
         // PUT: api/StudentInternships/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
