@@ -30,12 +30,12 @@ namespace IMSWebAPI.Models
 
         public virtual Address Address { get; set; } = null!;
         public virtual Company? Company { get; set; }
-        public virtual InternshipType InternshipTypeNavigation { get; set; } = null!;
-        public virtual ManagerType ManagerNavigation { get; set; } = null!;
-        public virtual ICollection<Ime> Imes { get; set; }
-        public virtual ICollection<InternshipControlInfo> InternshipControlInfos { get; set; }
-        public virtual ICollection<InternshipDocControl> InternshipDocControls { get; set; }
-        public virtual ICollection<InternshipExam> InternshipExams { get; set; }
+        public virtual InternshipType? InternshipTypeNavigation { get; set; } = null!;
+        public virtual ManagerType? ManagerNavigation { get; set; } = null!;
+        public virtual ICollection<Ime>? Imes { get; set; }
+        public virtual ICollection<InternshipControlInfo>? InternshipControlInfos { get; set; }
+        public virtual ICollection<InternshipDocControl>? InternshipDocControls { get; set; }
+        public virtual ICollection<InternshipExam>? InternshipExams { get; set; }
         public virtual ICollection<StudentInternship>? StudentInternships { get; set; }
     }
 }
