@@ -310,6 +310,8 @@ namespace IMSWebAPI.Models
 
                 entity.Property(e => e.AutumnPeriod).HasColumnName("autumnPeriod");
 
+                entity.Property(e => e.CompanyId).HasColumnName("companyId");
+
                 entity.Property(e => e.EndingDate).HasColumnName("endingDate");
 
                 entity.Property(e => e.Gss).HasColumnName("gss");
@@ -333,6 +335,11 @@ namespace IMSWebAPI.Models
                     .HasForeignKey(d => d.AddressId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("internship_addressId_fkey");
+
+                entity.HasOne(d => d.Company)
+                    .WithMany(p => p.Internships)
+                    .HasForeignKey(d => d.CompanyId)
+                    .HasConstraintName("internship_companyId_fkey");
 
                 entity.HasOne(d => d.InternshipTypeNavigation)
                     .WithMany(p => p.Internships)

@@ -20,20 +20,20 @@ import { useUserContext } from "./components/hooks/useUserContext";
 const Routess = () => {
 
     const {user} = useUserContext()
-
+    var userInfo = JSON.stringify(localStorage.getItem('user'));
     return (
         <Routes>
             
             
-            <Route exact path= "/home" element={user ? <Navbar><Home/></Navbar> : <Navigate to="/login"/>}/>
-            <Route exact path= "/imebasvuru" element={<Navbar><Imebasvuru/></Navbar>}/>
-            <Route exact path= "/imedefteri" element={user ? <Navbar><Imedefteri/></Navbar> : <Navigate to="/login"/>}/>
-            <Route exact path= "/imedegerlendirme" element={user ? <Navbar><Imedegerlendirme/></Navbar> : <Navigate to="/login"/>}/>
-            <Route exact path= "/imetakip" element={user ? <Navbar><Imetakip/></Navbar> : <Navigate to="/login"/>}/>
-            <Route exact path= "/stajbasvuru" element={user ? <Navbar><Stajbasvuru/></Navbar> : <Navigate to="/login"/>}/>
-            <Route exact path= "/stajdefteri" element={user ? <Navbar><Stajdefteri/></Navbar> : <Navigate to="/login"/>}/>
-            <Route exact path= "/stajdegerlendirme" element={user ? <Navbar><Stajdegerlendirme/></Navbar> : <Navigate to="/login"/>}/>
-            <Route exact path= "/stajtakip" element={user ? <Navbar><Stajtakip/></Navbar> : <Navigate to="/login"/>}/>
+            <Route exact path= "/home" element={userInfo!=null ? <Navbar><Home/></Navbar> : <Navigate to="/login"/>}/>
+            <Route exact path= "/imebasvuru" element={userInfo!=null ? <Navbar><Imebasvuru/></Navbar> : <Navigate to="/login"/>}/>
+            <Route exact path= "/imedefteri" element={userInfo!=null ? <Navbar><Imedefteri/></Navbar> : <Navigate to="/login"/>}/>
+            <Route exact path= "/imedegerlendirme" element={userInfo!=null ? <Navbar><Imedegerlendirme/></Navbar> : <Navigate to="/login"/>}/>
+            <Route exact path= "/imetakip" element={userInfo!=null ? <Navbar><Imetakip/></Navbar> : <Navigate to="/login"/>}/>
+            <Route exact path= "/stajbasvuru" element={userInfo!=null ? <Navbar><Stajbasvuru/></Navbar> : <Navigate to="/login"/>}/>
+            <Route exact path= "/stajdefteri" element={userInfo!=null ? <Navbar><Stajdefteri/></Navbar> : <Navigate to="/login"/>}/>
+            <Route exact path= "/stajdegerlendirme" element={userInfo!=null ? <Navbar><Stajdegerlendirme/></Navbar> : <Navigate to="/login"/>}/>
+            <Route exact path= "/stajtakip" element={userInfo!=null ? <Navbar><Stajtakip/></Navbar> : <Navigate to="/login"/>}/>
 
 
             
