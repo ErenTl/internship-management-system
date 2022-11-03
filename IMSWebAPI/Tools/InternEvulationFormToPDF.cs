@@ -7,8 +7,8 @@ namespace IMSWebAPI.Tools
     {
         public static void PrintInternAcceptanceForm(InternshipInformationPDF intern, long id)
         {
-            string _inputPath = "C:/Users/eren_/Documents/demos/IMS-yazlab/internship-management-system/IMSWebAPI/forms/internshipform.docx";
-            string _outputPath = "C:/Users/eren_/Documents/demos/IMS-yazlab/internship-management-system/IMSWebAPI/forms/internshipevulationform/"+id+".pdf";
+            string _inputPath = "wwwroot/pdf/internshipform.docx";
+            string _outputPath = "wwwroot/pdf/GeneratedEvulationPdfFiles/"+id+".pdf";
             Document doc = new Document(_inputPath);
             DocumentBuilder builder = new DocumentBuilder(doc);
 

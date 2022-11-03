@@ -9,18 +9,25 @@ using IMSWebAPI.Models;
 using IMSWebAPI.Models.APIModels;
 using IMSWebAPI.Tools;
 
+
 namespace IMSWebAPI.Controllers
 {
+
     [Route("api/[controller]")]
     [ApiController]
     public class InternshipsController : ControllerBase
     {
+        private Microsoft.AspNetCore.Hosting.IHostingEnvironment Environment;
         private readonly imsdbContext _context;
 
-        public InternshipsController(imsdbContext context)
+        public InternshipsController(imsdbContext context, Microsoft.AspNetCore.Hosting.IHostingEnvironment _environment)
         {
             _context = context;
+            Environment = _environment;
+
         }
+
+
 
         // GET: api/Internships
         [HttpGet]
@@ -34,7 +41,9 @@ namespace IMSWebAPI.Controllers
         public async Task<IActionResult> Download(long id)
         { 
             await DownloadDeneme(id);
-            return PhysicalFile("C:/Users/eren_/Documents/demos/IMS-yazlab/internship-management-system/IMSWebAPI/forms/internshipevulationform/"+id+".pdf", "application/pdf", id+".pdf");
+
+            return PhysicalFile(this.Environment.WebRootPath+"/pdf/GeneratedEvulationPdfFiles/" + id + ".pdf", "application/pdf", id + ".pdf");
+            //return PhysicalFile("C:/Users/eren_/Documents/demos/IMS-yazlab/internship-management-system/IMSWebAPI/wwwroot/pdf/GeneratedEvulationPdfFiles/" + id + ".pdf", "application/pdf", id+".pdf");
         }
 
         [HttpGet("downloaddeneme")]
@@ -200,6 +209,16 @@ namespace IMSWebAPI.Controllers
 
             return internship;
         }
+
+        [HttpGet("readpdf/{id}")]
+        public IActionResult PhysicalLocation(long id)
+        {
+            string physicalPath = "wwwroot/pdf/GeneratedEvulationPdfFiles/" + id +".pdf";
+            byte[] pdfBytes = System.IO.File.ReadAllBytes(physicalPath);
+            MemoryStream ms = new MemoryStream(pdfBytes);
+            return new FileStreamResult(ms, "application/pdf");
+        }
+
 
         // PUT: api/Internships/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
