@@ -31,6 +31,39 @@
     }
   }
 
+  {
+    "startingDate": "2022-11-04",
+    "endingDate": "2022-11-13",
+    "internshipType": 1,
+    "workDay": 12,
+    "sgk": true,
+    "_25age": true,
+    "gss": true,
+    "stateContribution": false,
+    "autumnPeriod": true,
+    "manager": "1",
+    "address": {
+        "districtId": "14802",
+        "addressInfo": "sadd"
+    },
+    "company": {
+        "formalName": "I just need",
+        "telephone": "05456544565",
+        "fax": "faxım benn",
+        "email": "qwe@gmail.com",
+        "address": {
+            "districtId": "55860",
+            "addressInfo": "Nokia telefonları sakladıkları yer"
+        },
+        "companyFields": [{
+            "fieldId": "7"
+        }]
+    },
+    "studentInternships": [{
+        "studentId": 1
+    }]
+}
+
 
 
 Example:

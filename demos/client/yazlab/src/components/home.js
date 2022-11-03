@@ -1,5 +1,6 @@
 // import { useLogout } from "../hooks/useLogout";
 // import { useUserContext } from "../hooks/useUserContext";
+import Footer from "./navbarcomps/footer"
 
 const Home = () => {
     // const {user} = useUserContext()

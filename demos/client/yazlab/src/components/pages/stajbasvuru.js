@@ -13,7 +13,7 @@ function Stajbasvuru() {
     //const {intern} = useCreateStaj();
 
     const [workDay, setWorkDay] = useState(); //will be posteed to backend
-    const [internshipType, setInternshipType] = useState(); //will be posteed to backend
+    const [internshipType, setInternshipType] = useState(1); //will be posteed to backend
     const [sgk, setSgk] = useState(true); //will be posteed to backend
     const [age, setAge] = useState(true); //will be posteed to backend 
     const [gss, setGss] = useState(true); //will be posteed to backend
@@ -29,7 +29,7 @@ function Stajbasvuru() {
     const [startingDate, setStartingDate] = useState(""); //will be posteed to backend
     const [endingDate, setEndingDate] = useState(""); //will be posteed to backend 
     const [stateContribution, setStateContribution] = useState(true); //will be posteed to backend
-
+    var internIdDownload;
     function postForm() {
         var x = JSON.stringify({
             startingDate: startingDate,
@@ -44,23 +44,39 @@ function Stajbasvuru() {
             manager: managerType,
             address:{
                 districtId: studentPostalCode,
-                addressInfo: studentAddressInfo,
-                companies: {
-                    formalName: formalName,
-                    telephone: telephone,
-                    fax: fax,
-                    email: email,
-                    companyFields: {
-                        fieldId: field
-                    }
-                }
+                addressInfo: studentAddressInfo
             },
-            studentInternships: {
-                studentId : id
-            }
+            company: {
+                formalName: formalName,
+                telephone: telephone,
+                fax: fax,
+                email: email,
+                
+                address: {
+                    districtId: companyPostalCode,
+                    addressInfo: companyAddressInfo
+                },
+                companyFields: [{
+                    fieldId: field
+                }]
+            },
+            studentInternships: [{
+                studentId : user.id
+            }]
+        
         });
         console.log(JSON.parse(x));
-        // postInternshipAcceptanceForm(workDay);
+        internIdDownload = postInternshipAcceptanceForm(x);
+    }
+
+    function downloadPDF() {
+        fetch(variables.API_URL+'internships/download/'+internIdDownload, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + JSON.parse(localStorage.getItem('user')).accessToken
+            }
+        })
     }
   
     const [cities, setCities] = useState([]);
@@ -265,7 +281,7 @@ function Stajbasvuru() {
                                                 <div class="form-check">
                                                     <input class="form-check-input" type="radio" name="gridRadios"
                                                         id="gridRadios1" value={internshipType}
-                                                        onClick={() => setInternshipType('Staj 1')} checked/>
+                                                        onClick={() => setInternshipType(1)} checked/>
                                                     <label class="form-check-label" for="gridRadios1">
                                                         Staj 1
                                                     </label>
@@ -273,7 +289,7 @@ function Stajbasvuru() {
                                                 <div class="form-check">
                                                     <input class="form-check-input" type="radio" name="gridRadios"
                                                         id="gridRadios2" value={internshipType}
-                                                        onClick={() => setInternshipType('Staj 2')}/>
+                                                        onClick={() => setInternshipType(2)}/>
                                                     <label class="form-check-label" for="gridRadios2">
                                                         Staj 2
                                                     </label>
@@ -510,13 +526,14 @@ function Stajbasvuru() {
                         </div>
                     </div>
                 </div>
+                
             </div>
                     <br/>
                     <div class="m-n2" style={{position: "absolute", right: 5}}>
                         <button onClick={() => console.log("cliick")}>Tıkla</button>
                         <button type="button" class="btn btn-success rounded-pill m-2 float-right" style={{backgroundColor:"#009933"}} onClick={() => postForm()}>Kaydet</button>
                         <button type="button" class="btn btn-success rounded-pill m-2" style={{backgroundColor:"#009933"}}>PDF Oluştur</button>
-                        <button type="button" class="btn btn-success rounded-pill m-2" style={{backgroundColor:"#009933"}}>Dosyayı kaydet</button>
+                        <button type="button" class="btn btn-success rounded-pill m-2" style={{backgroundColor:"#009933"}} onClick={() => downloadPDF()}>Dosyayı kaydet</button>
                     </div>
                     {/* {error && <div className="error">{error}</div>} */}
                     
