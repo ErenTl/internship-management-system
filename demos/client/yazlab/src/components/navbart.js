@@ -62,19 +62,33 @@ function Navbart({children}) {
                     <div class="navbar-nav w-100">
                         <a href="index.html" class="nav-item nav-link active"><i class="fa fa-home me-2"></i>Ana Sayfa</a>
                         <div class="nav-item dropdown">
-                            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fa fa-chart-bar me-2"></i>Değerlendirmeler</a>
+                            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fa fa-chart-bar me-2"></i>Değerlendirme</a>
                             <div class="dropdown-menu bg-transparent border-0">
-                                <a href="ogrstajdegerlendirme.html" class="dropdown-item">Staj Değerlendirme</a>
-                                <a href="ogrimedegerlendirme.html" class="dropdown-item">İME Değerlendirme</a>
+                                <a href="/ogrstajdegerlendirme" class="dropdown-item">Staj Değerlendirme</a>
+                                <a href="/ogrimedegerlendirme" class="dropdown-item">İME Değerlendirme</a>
                             </div>
                         </div>
                         <div class="nav-item dropdown">
                             <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fa fa-user me-2"></i>Öğrenci Takip</a>
                             <div class="dropdown-menu bg-transparent border-0">
-                                <a href="ogrstajtakip.html" class="dropdown-item">Staj Takip</a>
-                                <a href="ogrimetakip.html" class="dropdown-item">İME Takip</a>
+                                <a href="/ogrstajtakip" class="dropdown-item">Staj Takip</a>
+                                <a href="/ogrimetakip" class="dropdown-item">İME Takip</a>
                             </div>
                         </div>
+                        <div class="nav-item dropdown">
+                       <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fa fa-clipboard-check me-2"></i>Başvuru Kabul</a>
+                       <div class="dropdown-menu bg-transparent border-0">
+                           <a href="/komstajkabul" class="dropdown-item">Staj Kabul</a>
+                           <a href="/komimekabul" class="dropdown-item">İME Kabul</a>
+                       </div>
+                   </div>
+                   <div class="nav-item dropdown">
+                       <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fa fa-question me-2"></i>Sınav Bilgileri</a>
+                       <div class="dropdown-menu bg-transparent border-0">
+                           <a href="/komstajsinav" class="dropdown-item">Staj Sınavı</a>
+                           <a href="/komimesinav" class="dropdown-item">İME Sınavı</a>
+                       </div>
+                   </div>
                     </div>
                 </nav>
             </div>
