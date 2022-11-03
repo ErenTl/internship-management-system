@@ -1,9 +1,9 @@
 import { useState } from "react";
-import { useCreateStaj } from "../hooks/useCreateStaj";
-import {variables} from '../../Variables.js';
+// import { useCreateStaj } from "../hooks/useCreateStaj";
+import {variables} from '../../../Variables.js';
 import { useEffect } from 'react';
-import {postInternshipAcceptanceForm} from '../hooks/useCreateStaj.js';
-import { json } from "react-router-dom";
+import {postInternshipAcceptanceForm} from '../../hooks/useCreateStaj.js';
+// import { json } from "react-router-dom";
 
 function Stajbasvuru() {
 
