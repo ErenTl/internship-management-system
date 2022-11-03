@@ -58,20 +58,20 @@ const Routess = () => {
             <Route exact path= "/belgeler" element={role="student" ? <Navbar><Belgeler/></Navbar> : <Navigate to="/login"/>}/>
 
             {/* role="teacher"  */}
-            <Route exact path= "/ogrstajtakip" element={userInfo!=null ? <Navbart><Ogrstajtakip/></Navbart> : <Navigate to="/login"/>}/>
-            <Route exact path= "/ogrstajdegerlendirme" element={userInfo!=null ? <Navbart><Ogrstajdegerlendirme/></Navbart> : <Navigate to="/login"/>}/>
-            <Route exact path= "/ogrimetakip" element={userInfo!=null ? <Navbart><Ogrimetakip/></Navbart> : <Navigate to="/login"/>}/>
-            <Route exact path= "/ogrimedegerlendirme" element={userInfo!=null ? <Navbart><Ogrimedegerlendirme/></Navbart> : <Navigate to="/login"/>}/>
+            <Route exact path= "/ogrstajtakip" element={userInfo!=null ? <Navbarc><Ogrstajtakip/></Navbarc> : <Navigate to="/login"/>}/>
+            <Route exact path= "/ogrstajdegerlendirme" element={userInfo!=null ? <Navbarc><Ogrstajdegerlendirme/></Navbarc> : <Navigate to="/login"/>}/>
+            <Route exact path= "/ogrimetakip" element={userInfo!=null ? <Navbarc><Ogrimetakip/></Navbarc> : <Navigate to="/login"/>}/>
+            <Route exact path= "/ogrimedegerlendirme" element={userInfo!=null ? <Navbarc><Ogrimedegerlendirme/></Navbarc> : <Navigate to="/login"/>}/>
             
             {/* role="commision" */}
-            <Route exact path= "/komstajtakip" element={userInfo!=null ? <Navbarc><Komstajtakip/></Navbarc> : <Navigate to="/login"/>}/>
-            <Route exact path= "/komstajsinav" element={userInfo!=null ? <Navbarc><Komstajsinav/></Navbarc> : <Navigate to="/login"/>}/>
-            <Route exact path= "/komstajkabul" element={userInfo!=null ? <Navbarc><Komstajkabul/></Navbarc> : <Navigate to="/login"/>}/>
-            <Route exact path= "/komstajdegerlendirme" element={userInfo!=null ? <Navbarc><Komstajdegerlendirme/></Navbarc> : <Navigate to="/login"/>}/>
-            <Route exact path= "/komimetakip" element={userInfo!=null ? <Navbarc><Komimetakip/></Navbarc> : <Navigate to="/login"/>}/>
-            <Route exact path= "/komimesinav" element={userInfo!=null ? <Navbarc><Komimesinav/></Navbarc> : <Navigate to="/login"/>}/>
-            <Route exact path= "/komimekabul" element={userInfo!=null ? <Navbarc><Komimekabul/></Navbarc> : <Navigate to="/login"/>}/>
-            <Route exact path= "/komimedegerlendirme" element={userInfo!=null ? <Navbarc><Komimedegerlendirme/></Navbarc> : <Navigate to="/login"/>}/>
+            <Route exact path= "/komstajtakip" element={userInfo!=null ? <Navbart><Komstajtakip/></Navbart> : <Navigate to="/login"/>}/>
+            <Route exact path= "/komstajsinav" element={userInfo!=null ? <Navbart><Komstajsinav/></Navbart> : <Navigate to="/login"/>}/>
+            <Route exact path= "/komstajkabul" element={userInfo!=null ? <Navbart><Komstajkabul/></Navbart> : <Navigate to="/login"/>}/>
+            <Route exact path= "/komstajdegerlendirme" element={userInfo!=null ? <Navbart><Komstajdegerlendirme/></Navbart> : <Navigate to="/login"/>}/>
+            <Route exact path= "/komimetakip" element={userInfo!=null ? <Navbart><Komimetakip/></Navbart> : <Navigate to="/login"/>}/>
+            <Route exact path= "/komimesinav" element={userInfo!=null ? <Navbart><Komimesinav/></Navbart> : <Navigate to="/login"/>}/>
+            <Route exact path= "/komimekabul" element={userInfo!=null ? <Navbart><Komimekabul/></Navbart> : <Navigate to="/login"/>}/>
+            <Route exact path= "/komimedegerlendirme" element={userInfo!=null ? <Navbart><Komimedegerlendirme/></Navbart> : <Navigate to="/login"/>}/>
 
 
             {/* login page */}
