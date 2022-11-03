@@ -1,7 +1,7 @@
-import { useLogout } from "./hooks/useLogout";
-import { useUserContext } from "./hooks/useUserContext";
+import { useLogout } from "../../hooks/useLogout";
+import { useUserContext } from "../../hooks/useUserContext";
 import { useState} from "react";
-import { Changepass } from "./hooks/useChangePass";
+import { Changepass } from "../../hooks/useChangePass";
 
 function Navbart({children}) {
 

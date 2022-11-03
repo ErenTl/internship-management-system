@@ -1,36 +1,39 @@
 import React from "react";
 import {Routes, Route, Navigate} from "react-router-dom";
 
-import Login from "./components/loginpage/login"
-import Home from "./components/home";
+import Login from "./components/pages/loginpage/login"
+import Home from "./components/pages/home";
 
-import Navbar from "./components/navbar";
-import Navbart from "./components/navbart";
-import Navbarc from "./components/navbarc";
+import Navbar from "./components/navbarcomps/navbars/navbar";
+import Navbara from "./components/navbarcomps/navbars/navbara";
+import Navbart from "./components/navbarcomps/navbars/navbart";
+import Navbarc from "./components/navbarcomps/navbars/navbarc";
 
-import Imebasvuru from "./components/pages/imebasvuru";
-import Imedefteri from "./components/pages/imedefteri";
-import Imedegerlendirme from "./components/pages/imedegerlendirme";
-import Imetakip from "./components/pages/imetakip";
-import Stajbasvuru from "./components/pages/stajbasvuru";
-import Stajdefteri from "./components/pages/stajdefteri";
-import Stajdegerlendirme from "./components/pages/stajdegerlendirme";
-import Stajtakip from "./components/pages/stajtakip";
-import Belgeler from "./components/pages/belgeler";
+import Imebasvuru from "./components/pages/studentpages/imebasvuru";
+import Imedefteri from "./components/pages/studentpages/imedefteri";
+import Imedegerlendirme from "./components/pages/studentpages/imedegerlendirme";
+import Imetakip from "./components/pages/studentpages/imetakip";
+import Stajbasvuru from "./components/pages/studentpages/stajbasvuru";
+import Stajdefteri from "./components/pages/studentpages/stajdefteri";
+import Stajdegerlendirme from "./components/pages/studentpages/stajdegerlendirme";
+import Stajtakip from "./components/pages/studentpages/stajtakip";
+import Belgeler from "./components/pages/studentpages/belgeler";
 
-import Ogrstajtakip from "./components/pages/ogrstajtakip";
-import Ogrstajdegerlendirme from "./components/pages/ogrstajdegerlendirme";
-import Ogrimetakip from "./components/pages/ogrimetakip";
-import Ogrimedegerlendirme from "./components/pages/ogrimedegerlendirme";
+import Ogrstajtakip from "./components/pages/teacherpages/ogrstajtakip";
+import Ogrstajdegerlendirme from "./components/pages/teacherpages/ogrstajdegerlendirme";
+import Ogrimetakip from "./components/pages/teacherpages/ogrimetakip";
+import Ogrimedegerlendirme from "./components/pages/teacherpages/ogrimedegerlendirme";
 
-import Komstajtakip from "./components/pages/komstajtakip";
-import Komstajsinav from "./components/pages/komstajsinav";
-import Komstajkabul from "./components/pages/komstajkabul";
-import Komstajdegerlendirme from "./components/pages/komstajdegerlendirme";
-import Komimetakip from "./components/pages/komimetakip";
-import Komimesinav from "./components/pages/komimesinav";
-import Komimekabul from "./components/pages/komimekabul";
-import Komimedegerlendirme from "./components/pages/komimedegerlendirme";
+import Komstajtakip from "./components/pages/commissionpages/komstajtakip";
+import Komstajsinav from "./components/pages/commissionpages/komstajsinav";
+import Komstajkabul from "./components/pages/commissionpages/komstajkabul";
+import Komstajdegerlendirme from "./components/pages/commissionpages/komstajdegerlendirme";
+import Komimetakip from "./components/pages/commissionpages/komimetakip";
+import Komimesinav from "./components/pages/commissionpages/komimesinav";
+import Komimekabul from "./components/pages/commissionpages/komimekabul";
+import Komimedegerlendirme from "./components/pages/commissionpages/komimedegerlendirme";
+
+import Ykullaniciekle from "./components/pages/adminpages/ykullaniciekle";
  
 import { useUserContext } from "./components/hooks/useUserContext";
 
@@ -73,6 +76,8 @@ const Routess = () => {
             <Route exact path= "/komimekabul" element={userInfo!=null ? <Navbart><Komimekabul/></Navbart> : <Navigate to="/login"/>}/>
             <Route exact path= "/komimedegerlendirme" element={userInfo!=null ? <Navbart><Komimedegerlendirme/></Navbart> : <Navigate to="/login"/>}/>
 
+            {/* role="commision" */}
+            <Route exact path= "/ykullaniciekle" element={userInfo!=null ? <Navbara><Ykullaniciekle/></Navbara> : <Navigate to="/login"/>}/>
 
             {/* login page */}
             <Route exact path= "/login" element={!user ? <Login/> : <Navigate to="/home"/>}/>

@@ -1,8 +1,8 @@
-import { useLogout } from "./hooks/useLogout";
-import { useUserContext } from "./hooks/useUserContext";
+import { useLogout } from "../../hooks/useLogout";
+// import { useUserContext } from "./../hooks/useUserContext";
 import { useState} from "react";
-import { Changepass } from "./hooks/useChangePass";
-import Footer from "./navbarcomps/footer";
+import { Changepass } from "../../hooks/useChangePass";
+// import Footer from "./footer";
  
 function Navbar({children}) {
 
