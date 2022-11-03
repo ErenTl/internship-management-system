@@ -37,7 +37,7 @@ namespace IMSWebAPI.Controllers
         }
         
 
-        [HttpGet("download")]
+        [HttpGet("download/{id}")]
         public async Task<IActionResult> Download(long id)
         { 
             await DownloadDeneme(id);
@@ -151,6 +151,36 @@ namespace IMSWebAPI.Controllers
 
         
 
+
+        [HttpGet("getInternshipsByUserId/{userId}")]
+        public async Task<ActionResult<IEnumerable<Internship>>> GetInternshipsByUserId(long userId)
+        {
+            //var ss = _context.StudentInternships
+            //                    .Include(Internship.)
+            //                    .Where(si => si.StudentId == userId)
+            //                    .ToList();
+            var dd = _context.Internships
+                .Include(i => i.StudentInternships.Where(si => si.StudentId == userId))
+                .Include(i => i.Company)
+                .Include(i => i.Address)
+                .Include(i => i.Address.District)
+                .Include(i => i.Address.District.City)
+                .ToListAsync().Result;
+
+            //var list = _context.StudentInternships.Where(sii => sii.StudentId == id).Select(si => new { internId = si.InternId }).ToListAsync();
+            //var x = await (from si in StudentInterqnship join
+            //               inte in _context.Internships on si.studentId equals userId
+            //               select new
+            //               {
+            //                   internId = si.InternId,
+            //               }).toListAsync();
+            if(dd == null)
+            {
+                return NotFound();
+            }
+            return dd;
+
+        }
 
 
         // GET: api/Internships/5
