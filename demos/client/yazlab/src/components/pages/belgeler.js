@@ -12,10 +12,12 @@ function Belgeler() {
     const [internshipInfo, setInternshipInfo] = useState([]);
     //const [count, setCount] = useState(0);
     var count = 0;
+    var cas = 0;
+    var internshipArray = [];
     useEffect(
         // Effect from first render
         () => {
-            fetch(variables.API_URL + "StudentInternships/getbyuserid/"+user.id, {
+            fetch(variables.API_URL + "internships/getInternshipsByUserId/"+user.id, {
              headers: {
                  'Accept': 'application/json'
                  }
@@ -30,41 +32,27 @@ function Belgeler() {
         [] // Never re-runs
     );
 
-    useEffect(() => {
-        for(var i=0;i<internship.length;i++) {
-            fetch(variables.API_URL+"internships/" + internship[i].id, {
+        function zattirizortzort(id) {
+            fetch(variables.API_URL+"internships/download/"+id, {
                 headers: {
-                    'Accept': 'application/json'
+                    'Accept': 'application/pdf'
                     }
-            })
-            .then(response => response.json())
-            .then (data => {
-
-                    console.log(internship.length);
-                    setInternshipInfo(internshipInfo => [...internshipInfo, data])
-                
             });
-
-        }
-    },[internship]);
-
-        function zattirizortzort() {
-            console.log(internship[0].internId);
         }
 
     
     
     return (
         <>
-        {internshipInfo.map(intern => 
+        {internship.map(intern => 
             
             ++count%2==0?
             <div className="card" style={{width: "18rem"}}>
             <image className="card-img-top"  alt="Card image cap"/>
             <div className="card-body">
                 <h5 className="card-title">{intern.internshipType==1?"Staj 1":"Staj 2"}</h5>
-                <p className="card-text">{intern.company.formalName}</p>
-                <a href="#" className="btn btn-primary" onClick={() => zattirizortzort()}>İndir</a>
+                <p className="card-text">{intern.id}</p>
+                <a href={"https://localhost:7148/api/Internships/download/"+intern.id} target="_blank" className="btn btn-primary" onClick={() => zattirizortzort(intern.id)}>İndir</a>
             </div>
             {console.log("c: "+count)}
         </div>
